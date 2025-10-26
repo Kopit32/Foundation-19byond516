@@ -54,6 +54,7 @@
 
 	/// Reference to the area we were created in
 	var/area/spawn_area
+	var/turf/start_turf = null
 	/// List of humans under the blinking influence
 	var/list/next_blinks = list()
 	/// List of times at which humans joined the list (Used for HUD calculation)
@@ -93,6 +94,7 @@
 
 	defecation_cooldown = world.time + 10 MINUTES // Give everyone some time to prepare
 	spawn_area = get_area(src)
+	start_turf = get_turf(src)
 	add_language(LANGUAGE_EAL, FALSE)
 	add_language(LANGUAGE_SKRELLIAN, FALSE)
 	add_language(LANGUAGE_GUTTER, FALSE)

@@ -37,6 +37,7 @@
 	var/aflame_cooldown_track = 0
 	///Our spawn area
 	var/area/spawn_area
+	var/turf/start_turf = null
 
 /mob/living/simple_animal/hostile/scp457/Initialize()
 	SCP = new /datum/scp(
@@ -48,6 +49,7 @@
 	)
 
 	spawn_area = get_area(src)
+	start_turf = get_turf(src)
 	add_language(LANGUAGE_EAL, FALSE)
 	add_language(LANGUAGE_SKRELLIAN, FALSE)
 	add_language(LANGUAGE_GUTTER, FALSE)

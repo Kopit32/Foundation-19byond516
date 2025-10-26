@@ -46,6 +46,8 @@
 	/// Cooldown for patience message
 	var/patience_cooldown_track
 
+	var/turf/start_turf = null
+
 /mob/living/carbon/human/scp049/Initialize(mapload, new_species = "SCP-049")
 	. = ..()
 	SCP = new /datum/scp(
@@ -75,6 +77,7 @@
 	add_language(LANGUAGE_PLAGUESPEAK_GLOBAL)
 
 	home_area = get_area(src)
+	start_turf = get_turf(src)
 
 /mob/living/carbon/human/scp049/proc/InitSkills()
 	skillset.skill_list = list()

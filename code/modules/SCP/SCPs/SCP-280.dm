@@ -5,6 +5,9 @@
 	icon_state = "scp_280"
 	status_flags = NO_ANTAG
 
+	pixel_x = -15
+	default_pixel_x = -15 // Fix sprite pos
+
 	see_invisible = SEE_INVISIBLE_NOLIGHTING
 	see_in_dark = 7
 	movement_cooldown = 6
@@ -44,6 +47,7 @@
 	var/door_cooldown = 5 SECONDS
 	var/door_cooldown_track
 	var/area/spawn_area
+	var/turf/start_turf = null
 
 	///Our damage message cooldown
 	var/damage_message_cooldown
@@ -59,6 +63,7 @@
 	)
 
 	spawn_area = get_area(src)
+	start_turf = get_turf(src)
 
 	SCP.min_time = 15 MINUTES
 	SCP.min_playercount = 30
@@ -241,7 +246,7 @@
 
 	if(istype(A, /obj/machinery/door/blast))
 		to_chat(src, SPAN_WARNING("The door is hard to open."))
-		open_time += 10 SECONDS // Such a strong door...
+		open_time += 15 SECONDS // Such a strong door...
 
 	A.visible_message(SPAN_WARNING("\The [src] begins to pry open \the [A]!"))
 	playsound(get_turf(A), 'sounds/machines/airlock_creaking.ogg', 35, 1)

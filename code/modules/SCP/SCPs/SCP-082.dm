@@ -27,6 +27,7 @@
 	var/patience_limit = 15 MINUTES
 	/// The area we spawned in
 	var/area/home_area = null
+	var/turf/start_turf = null
 	/// If TRUE, we are in the hunger state (seperate from regular hunger)
 	var/hungering = FALSE
 	/// Multiplier for time to open doors when hungering
@@ -81,6 +82,7 @@
 	add_language(LANGUAGE_HUMAN_FRENCH)
 
 	home_area = get_area(src)
+	start_turf = get_turf(src)
 	head_appearance = mutable_appearance(icon, hungering ? "hungry" : "static", layer + 0.02)
 	clothing_appearance = mutable_appearance(icon, "[clothing_set]", layer + 0.01)
 

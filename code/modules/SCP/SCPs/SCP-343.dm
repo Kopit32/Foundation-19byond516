@@ -13,6 +13,11 @@
 
 	//Config
 
+	var/cookie_cooldown = 30 SECONDS
+	var/cookie_cooldown_track = 0 SECONDS
+	var/heal_cooldown = 15 MINUTE
+	var/heal_cooldown_track = -15 MINUTE
+
 	///Cooldown for our phasing ability
 	var/phase_cooldown = 5 SECONDS
 	///How long it takes us to phase
@@ -106,6 +111,10 @@
 		return
 
 	if((a_intent == I_HELP) && ismob(A))
+		if((world.time - heal_cooldown_track) < heal_cooldown)
+			to_chat(src, SPAN_WARNING("You can't cure your children yet!"))
+			return
+		heal_cooldown_track = world.time + heal_cooldown
 		var/mob/living/target = A
 		to_chat(src, SPAN_WARNING("You start to heal [target]'s wounds"))
 		visible_message(SPAN_NOTICE("\The [src] starts to heal [target]'s wounds"))
@@ -141,7 +150,7 @@
 
 /mob/living/carbon/human/scp343/verb/change_shell()
 	set name = "Change shell"
-	set category = "SCP"
+	set category = "SCP-343"
 	set desc = "Become unreal"
 
 	// Invisible
@@ -150,10 +159,115 @@
 		move_delay = 3.0 // Default speed
 	else if (alpha == 255)
 		alpha = 0
-		move_delay = 1.0 // Max speed
-
-
+		move_delay = 1.5 // Max speed
 	to_chat(src, SPAN_WARNING("You change your visibility."))
+
+
+/mob/living/carbon/human/scp343/verb/summon_cookie()
+	set name = "Summon cookie"
+	set category = "SCP-343"
+	set desc = "Create cookies out of air"
+
+	if((world.time - cookie_cooldown_track) < cookie_cooldown)
+		to_chat(src, SPAN_WARNING("You can't create cookies yet!"))
+		return
+
+	var/mob/living/carbon/human/scp343/H = src
+
+	H.equip_to_slot_or_del( new /obj/item/reagent_containers/food/snacks/cookie(H), slot_l_hand )
+	if(!(istype(H.l_hand,/obj/item/reagent_containers/food/snacks/cookie)))
+		H.equip_to_slot_or_del( new /obj/item/reagent_containers/food/snacks/cookie(H), slot_r_hand )
+		if(!(istype(H.r_hand,/obj/item/reagent_containers/food/snacks/cookie)))
+			to_chat(src, SPAN_WARNING("You need free hands to create cookies!"))
+			return
+		else
+			H.update_inv_r_hand()
+			visible_message(SPAN_WARNING("A cookie appears in the [name] right hand!"))
+	else
+		H.update_inv_l_hand()
+		visible_message(SPAN_WARNING("A cookie appears in the [name] left hand!"))
+
+	cookie_cooldown_track = world.time + cookie_cooldown // To avoid cookie spam
+
+/mob/living/carbon/human/scp343/verb/return_scp_back() // Soo sussy verb
+	set name = "Return SCP back \[CAUTION\]"
+	set category = "SCP-343"
+	set desc = "Get your child back."
+
+	if(alert("Using this ability will incapacitate you for the rest of the round. Are you sure?",,"Yes","No") != "Yes")
+		return
+
+	var/list/A = list("049", "066", "082", "096", "106", "173", "247", "280", "457", "2427-3")
+
+	var/Target = tgui_input_list(src, "Choose a SCP to return", "SCP return", A)
+
+	// There's a bit of long code here, but it gets the job done.
+	if(Target == "049")
+		for(var/mob/living/carbon/human/scp049/T in GLOB.SCP_list)
+			T.forceMove(T.start_turf)
+			to_chat(src, SPAN_WARNING("Your doctor child has returned home. It's time to rest."))
+			usr.gib()
+			return
+	else if(Target == "066")
+		for(var/mob/living/simple_animal/friendly/retaliate/scp066/T in GLOB.SCP_list)
+			T.forceMove(T.start_turf)
+			to_chat(src, SPAN_WARNING("Your toy child has returned home. It's time to rest."))
+			usr.gib()
+			return
+	else if(Target == "082")
+		for(var/mob/living/carbon/human/scp082/T in GLOB.SCP_list)
+			T.forceMove(T.start_turf)
+			to_chat(src, SPAN_WARNING("Your french child has returned home. It's time to rest."))
+			usr.gib()
+			return
+	else if(Target == "096")
+		for(var/mob/living/scp096/T in GLOB.SCP_list)
+			T.forceMove(T.start_turf)
+			to_chat(src, SPAN_WARNING("Your shy child has returned home. It's time to rest."))
+			usr.gib()
+			return
+	else if(Target == "106")
+		for(var/mob/living/carbon/human/scp106/T in GLOB.SCP_list)
+			T.forceMove(T.spawn_turf)
+			to_chat(src, SPAN_WARNING("Your old child has returned home. It's time to rest."))
+			usr.gib()
+			return
+	else if(Target == "173")
+		for(var/mob/living/scp173/T in GLOB.SCP_list)
+			T.forceMove(T.start_turf)
+			to_chat(src, SPAN_WARNING("Your waiting child has returned home. It's time to rest."))
+			usr.gib()
+			return
+	else if(Target == "247")
+		for(var/mob/living/simple_animal/hostile/scp247/T in GLOB.SCP_list)
+			T.forceMove(T.start_turf)
+			to_chat(src, SPAN_WARNING("Your shaggy child has returned home. It's time to rest."))
+			usr.gib()
+			return
+	else if(Target == "280")
+		for(var/mob/living/simple_animal/hostile/scp280/T in GLOB.SCP_list)
+			T.forceMove(T.start_turf)
+			to_chat(src, SPAN_WARNING("Your dark child has returned home. It's time to rest."))
+			usr.gib()
+			return
+	else if(Target == "457")
+		for(var/mob/living/simple_animal/hostile/scp457/T in GLOB.SCP_list)
+			T.forceMove(T.start_turf)
+			to_chat(src, SPAN_WARNING("Your fiery child has returned home. It's time to rest."))
+			usr.gib()
+			return
+	else if(Target == "2427-3")
+		for(var/mob/living/simple_animal/hostile/scp2427_3/T in GLOB.SCP_list)
+			T.forceMove(T.start_turf)
+			to_chat(src, SPAN_WARNING("Your steel child has returned home. It's time to rest."))
+			usr.gib()
+			return
+	else
+		to_chat(src, SPAN_WARNING("You cannot affect this SCP!"))
+		return
+	to_chat(src, SPAN_WARNING("Something went wrong."))
+
+
 
 /mob/living/carbon/human/scp343/movement_delay()
 	return move_delay

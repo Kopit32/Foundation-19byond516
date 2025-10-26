@@ -48,6 +48,7 @@
 	var/wakeup_health = 0
 	var/door_cooldown
 	var/area/spawn_area = null
+	var/turf/start_turf = null
 	// Upon encountering a mob, they are added in one of these
 	var/list/purity_list = list()
 	var/list/impurity_list = list()
@@ -68,6 +69,7 @@
 	SCP.min_playercount = 30
 
 	spawn_area = get_area(src)
+	start_turf = get_turf(src)
 	add_language(LANGUAGE_ENGLISH, FALSE)
 	set_default_language(all_languages[LANGUAGE_ENGLISH])
 

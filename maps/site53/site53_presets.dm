@@ -12,6 +12,7 @@
 #define NETWORK_343 "SCP-343 CCTV Network"
 #define NETWORK_895 "SCP-895 CCTV Network (CAUTION!)"
 #define NETWORK_280 "SCP-280 CCTV Network"
+#define NETWORK_082 "SCP-082 CCTV Network"
 #define NETWORK_RESWING "Research CCTV Network"
 /datum/map/site53/get_network_access(network)
 	switch(network)
@@ -32,6 +33,8 @@
 		if(NETWORK_106)
 			return ACCESS_SCIENCE_LVL1
 		if(NETWORK_280)
+			return ACCESS_SCIENCE_LVL3
+		if(NETWORK_082)
 			return ACCESS_SCIENCE_LVL1
 		if(NETWORK_173)
 			return ACCESS_SCIENCE_LVL1
@@ -60,6 +63,7 @@
 		NETWORK_049,
 		NETWORK_106,
 		NETWORK_280,
+		NETWORK_082,
 		NETWORK_173,
 		NETWORK_012,
 		NETWORK_895,
@@ -83,6 +87,9 @@
 
 /obj/machinery/camera/network/scp280
 	network = list(NETWORK_280)
+
+/obj/machinery/camera/network/scp082
+	network = list(NETWORK_082)
 
 /obj/machinery/camera/network/scp049
 	network = list(NETWORK_049)

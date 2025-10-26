@@ -33,6 +33,8 @@
 	var/emote_passive_track = 0
 	var/emote_harmful_track = 0
 
+	var/turf/start_turf = null
+
 
 /mob/living/simple_animal/friendly/retaliate/scp066/Initialize()
 	. = ..()
@@ -50,6 +52,8 @@
 	SCP.compInit()
 
 	add_language(LANGUAGE_ENGLISH)
+
+	start_turf = get_turf(src)
 
 		// emotes
 	add_verb(src, list(

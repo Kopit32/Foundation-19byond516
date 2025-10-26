@@ -33,6 +33,8 @@
 
 	//Mechanicial
 
+	var/turf/start_turf = null
+
 	///Current Target
 	var/mob/living/carbon/human/target
 	///Possible targets we can pick from
@@ -85,6 +87,8 @@
 	SCP.memeticFlags = MINSPECT|MPHOTO|MCAMERA
 	SCP.memetic_proc = TYPE_PROC_REF(/mob/living/scp096, trigger)
 	SCP.compInit()
+
+	start_turf = get_turf(src)
 
 	leapHandler.stamina_cost = 0
 	scramble_desc = "A pale, emanciated figure. It looks almost human, but its limbs are long and skinny, its face is [SPAN_INFO("censored with several flashing squares.")]"

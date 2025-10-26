@@ -21,6 +21,8 @@
 
 	natural_weapon = /obj/item/natural_weapon/bite/strong
 
+	var/turf/start_turf = null
+
 	//config
 
 	///minimium distance we have to be away in order to be able to fire on scp 247
@@ -34,6 +36,8 @@
 		SCP_EUCLID, //Obj Class
 		"247", //Numerical Designation
 	)
+
+	start_turf = get_turf(src)
 
 // AI
 
