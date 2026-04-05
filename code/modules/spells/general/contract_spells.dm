@@ -26,7 +26,8 @@
 		return null
 
 	if(istype(target,/list))
-		target = target[1]
+		var/list/L = target
+		target = L[1]
 	return target
 
 
