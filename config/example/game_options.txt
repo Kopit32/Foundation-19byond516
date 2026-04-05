@@ -51,7 +51,7 @@ MAXIMUM_STAMINA_RECOVERY 15
 GLIDE_SIZE_DELAY 1
 
 ## Allow multiple input keys to be pressed for diagonal movement.
-#ALLOW_DIAGONAL_MOVEMENT
+ALLOW_DIAGONAL_MOVEMENT
 
 ### Miscellaneous ###
 
