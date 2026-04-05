@@ -47,6 +47,43 @@
 
 	return proj
 
+/obj/item/ammo_casing/proc/merge_into_handful(turf/T, obj/item/ammo_casing/src_casing)
+	var/list/casings = list()
+	var/obj/item/ammo_casing_handful/handful
+	for(var/obj/item/ammo_casing/turf_casing in T)
+		if(turf_casing != src_casing && turf_casing.is_spent && turf_casing.caliber == src_casing.caliber)
+			casings += turf_casing
+	for(var/obj/item/ammo_casing_handful/turf_handful in T)
+		if(turf_handful.caliber == src_casing.caliber)
+			handful = turf_handful
+			break
+	if(handful)
+		for(var/obj/item/ammo_casing/all_casing in casings)
+			handful.amount++
+			handful.add_residue_from(all_casing)
+			qdel(all_casing)
+		handful.amount++
+		handful.add_residue_from(src_casing)
+		qdel(src_casing)
+	else if(length(casings) >= 1)
+		handful = new /obj/item/ammo_casing_handful(T)
+		handful.icon_state = src_casing.spent_icon
+		handful.caliber = src_casing.caliber
+		handful.projectile_type = src_casing.projectile_type
+		for(var/obj/item/ammo_casing/all_casing in casings)
+			handful.amount++
+			handful.add_residue_from(all_casing)
+			qdel(all_casing)
+		handful.amount++
+		handful.add_residue_from(src_casing)
+		qdel(src_casing)
+	return handful
+
+/obj/item/ammo_casing/throw_impact(atom/hit_atom)
+	. = ..()
+	if(is_spent && !QDELETED(src))
+		merge_into_handful(get_turf(src), src)
+
 /obj/item/ammo_casing/proc/leave_residue()
 	var/mob/living/carbon/human/H = get_holder_of_type(src, /mob/living/carbon/human)
 	var/obj/item/gun/G = get_holder_of_type(src, /obj/item/gun)
@@ -143,6 +180,42 @@
 			P.launch(target, pick(BP_ALL_LIMBS))
 			return null
 	return ..()
+
+/obj/item/ammo_casing_handful
+	name = "handful of bullet casings"
+	desc = "A handful of spent bullet casings."
+	icon = 'icons/obj/ammo.dmi'
+	icon_state = "pistol-brass-empty"
+	randpixel = 10
+	obj_flags = OBJ_FLAG_CONDUCTIBLE
+	slot_flags = SLOT_BELT | SLOT_EARS
+	throwforce = 1
+	w_class = ITEM_SIZE_TINY
+
+	var/leaves_residue = TRUE
+	var/caliber = ""					//Which kind of guns it can be loaded into
+	var/is_spent = TRUE
+	var/fall_sounds = list('sounds/weapons/guns/casingfall1.ogg','sounds/weapons/guns/casingfall2.ogg','sounds/weapons/guns/casingfall3.ogg')
+	var/projectile_type
+	var/projectile_label
+	var/amount = 0
+
+/obj/item/ammo_casing_handful/Initialize()
+	if(randpixel)
+		pixel_x = rand(-randpixel, randpixel)
+		pixel_y = rand(-randpixel, randpixel)
+	. = ..()
+
+/obj/item/ammo_casing_handful/proc/add_residue_from(obj/item/ammo_casing/C)
+	if(C.gunshot_residue)
+		LAZYOR(gunshot_residue, C.gunshot_residue)
+
+/obj/item/ammo_casing_handful/examine(mob/user)
+	. = ..()
+	if(caliber)
+		to_chat(user, "Its caliber is [caliber].")
+	to_chat(user, "This one is spent.")
+	to_chat(user, "This handful has [amount] casings.")
 
 //An item that holds casings and can be used to put them inside guns
 /obj/item/ammo_magazine
