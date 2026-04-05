@@ -275,7 +275,7 @@
 		return "*null*"
 	if(islist(d))
 		var/list/L = list()
-		var/alist/dl = d
+		var/list/dl = d
 		for(var/e in dl)
 			// Indexing on numbers just gives us the same number again in the best case and causes an index out of bounds runtime in the worst
 			var/v = isnum(e) ? null : dl[e]
