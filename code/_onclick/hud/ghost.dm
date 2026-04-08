@@ -11,7 +11,7 @@
 	var/atom/movable/screen/using
 	adding = list()
 
-	using = new /atom/movable/screen/ghost/follow()
+	using = new /atom/movable/screen/ghost/orbit()
 	using.screen_loc = ui_ghost_orbit
 	adding += using
 

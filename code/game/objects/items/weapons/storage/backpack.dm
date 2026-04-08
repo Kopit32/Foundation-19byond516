@@ -526,3 +526,8 @@
 	name = "military rucksack"
 	desc = "A heavy rucksack that can carry more than the conventional rucksacks, usually used by the russian military forces, but this one is used by the Chaos Insurgency."
 	icon_state = "ci_rucksack"
+
+/obj/item/storage/backpack/messenger/classd
+	name = "class d messenger bag"
+	desc = "A small backpack, worn over one shoulder."
+	icon_state = "satchel-chem"

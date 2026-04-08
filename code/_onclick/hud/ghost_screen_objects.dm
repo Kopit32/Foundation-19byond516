@@ -1,17 +1,16 @@
 /atom/movable/screen/ghost
 	icon = 'icons/hud/screen_ghost.dmi'
 
-/atom/movable/screen/ghost/follow
+/atom/movable/screen/ghost/orbit
 	name = "Orbit"
-	icon_state = "follow"
+	icon_state = "orbit"
 
 /atom/movable/screen/ghost/orbit/Click()
-
 	var/mob/observer/ghost/G = usr
 	var/list/A = list()
 	A |= GLOB.living_mob_list_
 	A |= GLOB.player_list
-	var/mob/fh = tgui_input_list(G, "Choose a player to follow", "follow", A)
+	var/mob/fh = tgui_input_list(G, "Choose a player to orbit", "Orbit", A)
 	if(istype(fh))
 		G.follow(fh)
 	else if(isnull(fh))

@@ -332,13 +332,13 @@
 	activation_sound = 'sounds/effects/glowstick.ogg'
 	deactivation_sound = null
 
-	flashlight_max_bright = 0.6
+	flashlight_max_bright = 1
 	flashlight_inner_range = 0.1
 	flashlight_outer_range = 3
 
 /obj/item/device/flashlight/flare/glowstick/Initialize()
 	. = ..()
-	fuel = rand(1600, 2000)
+	fuel = rand(2600, 4000)
 	light_color = color
 
 /obj/item/device/flashlight/flare/glowstick/on_update_icon()

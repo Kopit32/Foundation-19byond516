@@ -7,7 +7,7 @@
 	l_pocket = /obj/item/paper/dclass_orientation
 	id_type = /obj/item/card/id/classd
 	pda_type = null
-	back = null
+	back = /obj/item/storage/backpack/messenger/classd
 
 /decl/hierarchy/outfit/job/civ/classd/post_equip(mob/living/carbon/human/H)
 	..()
