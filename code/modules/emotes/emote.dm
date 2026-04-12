@@ -169,11 +169,17 @@ GLOBAL_LIST_INIT(all_emotes, list(); for(var/emotepath in subtypesof(/datum/emot
 	else if(msg_1p)
 		to_chat(user, msg_1p)
 
+		// Floating chat
+		INVOKE_ASYNC(M, TYPE_PROC_REF(/atom/movable, animate_emote), use_3p, 0)
+
+
 	var/emote_sound = get_sound(user, intentional)
 	if(emote_sound && can_play_sound(user, intentional))
 		LAZYINITLIST(user.next_audio_emote_produce)
 		set_cooldown(user.next_audio_emote_produce, audio_cooldown, intentional)
 		play_sound(user, intentional, emote_sound)
+
+
 
 
 /datum/emote/proc/can_play_sound(mob/user, intentional)

@@ -74,6 +74,8 @@
 	log_emote("[key_name(src)] : [message]")
 
 	var/user_name = "<b>[src]</b>"
+	var/emote_text
+
 
 	var/end_char = message[length(message)]
 	if(end_char != "." && end_char != "?" && end_char != "!" && end_char != "\"")
@@ -81,18 +83,18 @@
 
 	if(findtext(message, "^"))
 		message = "[capitalize(replacetext(message, regex(@"\^+", "g"), user_name))]"
+		// Floating chat
+		INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, animate_emote), emote_text, 1)
 	else
 		message = "[user_name] [message]"
-
+		// Floating chat
+		INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, animate_emote), emote_text, 1)
 	if(message_type & VISIBLE_MESSAGE)
 		visible_message(message, checkghosts = /datum/client_preference/ghost_sight)
+		// Floating chat
+		INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, animate_emote), emote_text, 1)
 	else
 		audible_message(message, checkghosts = /datum/client_preference/ghost_sight)
+		// Floating chat
+		INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, animate_emote), emote_text, 1)
 
-		// Animate floating chat message for emotes
-	var/list/recipients = list()
-	for(var/client/C in GLOB.clients)
-		if(C.mob && C.mob.can_hear(src))
-			recipients += C
-
-	animate_chat(message, null, TRUE, recipients)
