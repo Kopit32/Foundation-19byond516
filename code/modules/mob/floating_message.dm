@@ -15,6 +15,11 @@ var/global/list/floating_chat_colors = list()
 /atom/movable
 	var/list/stored_chat_text
 
+/mob/proc/create_chat_message(atom/movable/speaker, raw_message, italics=FALSE, size)
+	if(!client)
+		return
+
+
 /atom/movable/proc/animate_chat(message, datum/language/language, small, list/show_to, whisper = FALSE, unique_messages = null, duration = CHAT_MESSAGE_LIFESPAN)
 	set waitfor = FALSE
 
