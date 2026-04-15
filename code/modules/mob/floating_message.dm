@@ -20,8 +20,13 @@ var/global/list/floating_chat_colors = list()
 		return
 
 
-/atom/movable/proc/animate_chat(message, datum/language/language, small, list/show_to, whisper = FALSE, unique_messages = null, duration = CHAT_MESSAGE_LIFESPAN)
+/atom/movable/proc/animate_chat(message, datum/language/language, small, list/show_to, whisper = FALSE, unique_messages = null, used_radio, duration = CHAT_MESSAGE_LIFESPAN)
 	set waitfor = FALSE
+
+	var/mob/M = src
+	var/client/owned_by = M.client
+	if(!owned_by)
+		return
 
 	/// Get rid of any URL schemes that might cause BYOND to automatically wrap something in an anchor tag
 	var/static/regex/url_scheme = new(@"[A-Za-z][A-Za-z0-9+-\.]*:\/\/", "g")
@@ -50,6 +55,12 @@ var/global/list/floating_chat_colors = list()
 		global.floating_chat_colors[name] = get_random_colour(0, 160, 230)
 	style += "color: [global.floating_chat_colors[name]];"
 
+	// add prefix if radio used
+	if(used_radio)
+		var/icon/prefix = icon("icons/UI_Icons/chat/chat_icons.dmi", icon_state = "radio")
+		message = "\icon[prefix][message]."
+		owned_by.MeasureText(message, null, CHAT_MESSAGE_WIDTH)
+
 	// create 2 messages, one that appears if you know the language, and one that appears when you don't know the language
 	var/image/understood = generate_floating_text(src, capitalize(message), style, fontsize, duration, show_to)
 	var/image/gibberish = language ? generate_floating_text(src, language.scramble(message), style, fontsize, duration, show_to) : understood
@@ -76,6 +87,9 @@ var/global/list/floating_chat_colors = list()
 	set waitfor = FALSE
 
 	var/mob/M = src
+	var/client/owned_by = M.client
+	if(!owned_by)
+		return
 	var/emote_view = world.view
 	var/turf/T = get_turf(M)
 	var/list/listening = list()
@@ -91,10 +105,11 @@ var/global/list/floating_chat_colors = list()
 		if(E && E.client)
 			emote_recipients += E.client
 
-	if (tack_period) // To format the emote, if it's custom, add a period.
-		message = "#[message]."
+	var/icon/prefix = icon("icons/UI_Icons/chat/chat_icons.dmi", icon_state = "emote")
+	if (tack_period) // format the emote, if it's custom, add a period
+		message = "\icon[prefix][message]."
 	else
-		message = "#[message]"
+		message = "\icon[prefix][message]"
 
 	/// Get rid of any URL schemes that might cause BYOND to automatically wrap something in an anchor tag
 	var/static/regex/url_scheme = new(@"[A-Za-z][A-Za-z0-9+-\.]*:\/\/", "g")
@@ -114,6 +129,8 @@ var/global/list/floating_chat_colors = list()
 	if(!global.floating_chat_colors[name])
 		global.floating_chat_colors[name] = get_random_colour(0, 160, 230)
 	style += "color: [global.floating_chat_colors[name]];"
+
+	owned_by.MeasureText(message, null, CHAT_MESSAGE_WIDTH)
 
 	var/image/emote_text = generate_floating_text(src, capitalize(message), style, fontsize, duration, emote_recipients)
 	var/image/move_trim = generate_floating_text(src, capitalize(message), style, fontsize, duration, emote_recipients)

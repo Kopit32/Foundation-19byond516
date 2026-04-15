@@ -74,9 +74,8 @@
 	log_emote("[key_name(src)] : [message]")
 
 	var/user_name = "<b>[src]</b>"
-	var/emote_text
 
-	INVOKE_ASYNC(user_name, TYPE_PROC_REF(/atom/movable, animate_emote), emote_text, 1)
+	INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, animate_emote), message, 1)
 
 	var/end_char = message[length(message)]
 	if(end_char != "." && end_char != "?" && end_char != "!" && end_char != "\"" && end_char != "*")
