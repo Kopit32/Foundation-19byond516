@@ -94,9 +94,9 @@
 		/decl/audio/track/let_me_be_alive,
 		/decl/audio/track/in_the_pines,
 		/decl/audio/track/author_of_my_obituary,
-		///decl/audio/track/goc_spawn_theme2, // no scp vibe
+	//	/decl/audio/track/goc_spawn_theme2, // no scp vibe
 		/decl/audio/track/fall_of_ganzir
-		///decl/audio/track/the_bookburners_v2 // no scp vibe
+	//	/decl/audio/track/the_bookburners_v2 // no scp vibe
 	)
 
 	available_cultural_info = list(

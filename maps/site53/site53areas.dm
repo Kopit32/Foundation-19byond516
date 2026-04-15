@@ -1280,6 +1280,11 @@
 	icon_state = "checkpoint1"
 	area_flags = AREA_FLAG_RAD_SHIELDED
 
+/area/site53/lhcz/scp330room
+	name = "\improper SCP-330 Containment Chamber"
+	icon_state = "research"
+	area_flags = AREA_FLAG_RAD_SHIELDED
+
 /area/site53/lhcz/scp1102room
 	name = "\improper SCP-1102-RU Containment Chamber"
 	icon_state = "research"

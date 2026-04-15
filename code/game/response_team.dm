@@ -71,7 +71,7 @@ var/global/send_emergency_team = 0 // Used for automagic response teams
 	if(send_emergency_team)
 		return
 
-	command_announcement.Announce("It would appear that an MTF was requested for [station_name()]. We will prepare and send one as soon as possible.", "[GLOB.using_map.boss_name]")
+	command_announcement.Announce("It would appear that an MTF was requested for [station_name()]. We will prepare and send one as soon as possible.", "[GLOB.using_map.boss_name]", 'sounds/scp/mtf_dispatch.ogg')
 
 	GLOB.ert.reason = reason //Set it even if it's blank to clear a reason from a previous ERT
 

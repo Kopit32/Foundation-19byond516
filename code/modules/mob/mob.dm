@@ -756,15 +756,13 @@
 
 	// update SCP-106's vis_contents icon
 	if(isscp106(src))
-		var/mob/living/carbon/human/scp106/H = src
-		// H.fix_icons()
-		H.update_vision_cone()
+		var/mob/living/L = src
+		L.update_vision_cone()
 
 	// update SCP-049's vis_contents icon
 	else if(isscp049(src))
-		var/mob/living/carbon/human/scp049/H = src
-		// H.fix_icons()
-		H.update_vision_cone()
+		var/mob/living/L = src
+		L.update_vision_cone()
 
 	//Temporarily moved here from the various life() procs
 	//I'm fixing stuff incrementally so this will likely find a better home.
@@ -775,8 +773,8 @@
 	else if( lying != lying_prev )
 		update_icons()
 		if (isliving(src))
-			var/mob/living/H = src
-			H.update_vision_cone()
+			var/mob/living/L = src
+			L.update_vision_cone()
 
 // Simply handles density
 /mob/proc/HandleLyingDensity()
