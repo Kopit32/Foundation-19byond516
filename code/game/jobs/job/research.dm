@@ -153,7 +153,7 @@
 
 	psi_faculties = list(
 		PSI_COERCION = PSI_RANK_OPERANT,
-		PSI_PSYCHOKINESIS = PSI_RANK_GRANDMASTER,
+		PSI_PSYCHOKINESIS = PSI_RANK_OPERANT,
 		PSI_REDACTION = PSI_RANK_MASTER,
 		PSI_ENERGISTICS = PSI_RANK_OPERANT
 	)
@@ -201,8 +201,7 @@
 	    SKILL_SCIENCE     = SKILL_MASTER
 	)
 	psi_faculties = list(
-		PSI_COERCION = PSI_RANK_OPERANT,
-		PSI_PSYCHOKINESIS = PSI_RANK_GRANDMASTER) //Basic level of Psionics, with ability to read others.
+		PSI_COERCION = PSI_RANK_OPERANT) //Basic level of Psionics, with ability to read others.
 
 /datum/job/seniorscientist
 	title = "Senior Researcher"
