@@ -1,3 +1,4 @@
+GLOBAL_VAR_CONST(admin_message_cooldown, 3 SECONDS)
 
 //This is a list of words which are ignored by the parser when comparing message contents for names. MUST BE IN LOWER CASE!
 var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","alien","as")
@@ -70,6 +71,9 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 	if(prefs.muted & MUTE_ADMINHELP)
 		to_chat(src, FONT_COLORED("red","Error: Admin-PM: You cannot send adminhelps (Muted)."))
 		return
+	if(to_admins_cooldown >= world.time)
+		to_chat(src, "You need wait to send message to admins")
+		return
 
 	adminhelped = 1 //Determines if they get the message to reply by clicking the name.
 
@@ -105,6 +109,7 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 				break
 		if(!admin_found)
 			to_chat(src, SPAN_WARNING("Error: Private-Message: Client not found. They may have lost connection, so please be patient!"))
+		to_admins_cooldown = world.time + GLOB.admin_message_cooldown
 		return
 
 	ticket.msgs += new /datum/ticket_msg(src.ckey, null, original_msg)
@@ -135,4 +140,5 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 		adminmsg2adminirc(src, null, "[html_decode(original_msg)]")
 
 	SSstatistics.add_field_details("admin_verb","AH") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	to_admins_cooldown = world.time + GLOB.admin_message_cooldown
 	return

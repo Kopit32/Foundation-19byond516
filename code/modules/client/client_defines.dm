@@ -116,3 +116,6 @@
 	/// The direction we WANT to move, based off our keybinds
 	/// Will be updated to be the actual direction later on
 	var/intended_direction = NONE
+
+	//Cooldown for messages in pray and adminhelp
+	var/to_admins_cooldown
