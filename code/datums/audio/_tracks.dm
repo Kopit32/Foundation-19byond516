@@ -445,3 +445,38 @@
 	author = "Astowo"
 	license = /decl/license/cc_by_sa_3_0
 	url = "https://www.youtube.com/watch?v=NXZ4hbOl7eY"
+
+/decl/audio/track/let_me_be_alive
+	source = 'sounds/music/Let_me_be_alive.ogg'
+	title = "Let Me Be Alive"
+	author = "Ivory Rasmus"
+	license = /decl/license/cc_by_sa_3_0
+	url = "https://www.youtube.com/watch?v=Tj4oxxZWRmk"
+
+/decl/audio/track/in_the_pines
+	source = 'sounds/music/Danny_Farrant_Paul_Rawson_-_In_The_Pines.ogg'
+	title = "In The Pines"
+	author = "Danny Farrant Paul Rawson"
+	license = /decl/license/cc_by_sa_3_0
+	url = "https://www.youtube.com/watch?v=uSZ1KqHwm08"
+
+/decl/audio/track/author_of_my_obituary
+	source = 'sounds/music/author-of-my-obituary.ogg'
+	title = "author of my obituary"
+	author = "Monochrome Media"
+	license = /decl/license/cc_by_sa_3_0
+	url = "https://www.youtube.com/watch?v=LtkJmAAknLE"
+
+/decl/audio/track/dawn_of_the_moors_main_menu
+	source = 'sounds/music/Dawn_Of_The_Doors_Main_Menu.ogg'
+	title = "Dawn Of The Doors Main Menu"
+	author = "LSPLASH"
+	license = /decl/license/cc_by_sa_3_0
+	url = "https://www.youtube.com/watch?v=__cCs-zxsVo"
+
+/decl/audio/track/scp_cb_main_menu
+	source = 'sounds/music/SCP_CB_Main_Menu.ogg'
+	title = "SCP: CB Main Menu"
+	author = "Joonas Rikkonen"
+	license = /decl/license/cc_by_sa_3_0
+	url = "https://www.youtube.com/watch?v=octyAY4SWE0"

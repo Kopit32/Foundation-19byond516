@@ -11,7 +11,7 @@
 	throwforce = 7
 	throw_range = 3
 	item_state = "crowbar"
-	w_class = ITEM_SIZE_NORMAL
+	w_class = ITEM_SIZE_LARGE
 	origin_tech = list(TECH_ENGINEERING = 1)
 	matter = list(MATERIAL_STEEL = 140)
 	center_of_mass = "x=16;y=20"
@@ -52,7 +52,7 @@
 	edge = TRUE
 	throwforce = 6
 	throw_range = 5
-	w_class = ITEM_SIZE_NORMAL
+	w_class = ITEM_SIZE_LARGE
 	matter = list(MATERIAL_STEEL = 150)
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked", "attacked", "slashed", "torn", "ripped", "cut")
 

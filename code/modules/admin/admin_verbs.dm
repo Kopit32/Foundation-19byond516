@@ -79,6 +79,8 @@ var/list/admin_verbs_admin = list(
 	/client/proc/toggleghostwriters,
 	/client/proc/toggledrones,
 	/datum/admins/proc/show_skills, //Right click skill menu,
+	/client/proc/local_flick_light, //flicks light
+	/client/proc/global_flick_light,
 	/client/proc/man_up,
 	/client/proc/global_man_up,
 	/client/proc/response_team, // Response Teams admin verb,

@@ -653,3 +653,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return FALSE
 
 	return TRUE
+
+/mob/observer/ghost/custom_emote(message_type, message, intentional)
+	message = "<i>[message]</i>"
+	communicate(/decl/communication_channel/dsay, client, message, /decl/dsay_communication/emote)

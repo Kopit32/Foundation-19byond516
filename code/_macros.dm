@@ -199,6 +199,19 @@ var/const/NEGATIVE_INFINITY = -1#INF // win: -1.#INF, lin: -inf
 
 #define SPAN_CLASS(class, X) "<span class=\"[class]\">[X]</span>"
 
+// Animated & Colored Text Macros
+#define SPAN_BLINK(X) "<blink>[X]</blink>" // white blink
+#define SPAN_MARQUEE(X) "<marquee scrollamount='3' behavior='scroll'>[X]</marquee>" //slide to left
+#define SPAN_FLASH_RED(X) "<font color='red'><blink>[X]</blink></font>" //red blink
+#define SPAN_FLASH_GREEN(X) "<font color='green'><blink>[X]</blink></font>" //green blink
+#define SPAN_FLASH_YELLOW(X) "<font color='yellow'><blink>[X]</blink></font>" //yellow blink
+
+// CSS ANIMATED TEXT - WORKS IN TGUI / BROWSER WINDOWS
+#define SPAN_RAINBOW(X) "<span style='color:red; animation: rainbow 2s linear infinite; @keyframes rainbow { 0%{color:red} 17%{color:orange} 33%{color:yellow} 50%{color:green} 67%{color:blue} 83%{color:indigo} 100%{color:red} }'>[X]</span>" //nothing
+#define SPAN_PULSE(X) "<span style='animation: pulse 1s ease-in-out infinite; @keyframes pulse { 0%{opacity:1} 50%{opacity:0.3} 100%{opacity:1} }'>[X]</span>" //nothing
+#define SPAN_GLOW(X) "<span style='text-shadow: 0 0 0px cyan; animation: glow 1.5s ease-in-out infinite alternate; @keyframes glow { 0%{text-shadow:0 0 2px cyan} 100%{text-shadow:0 0 12px cyan, 0 0 20px cyan} }'>[X]</span>" // bad glow
+#define SPAN_SHAKE(X) "<span style='animation: shake 0.5s linear infinite; @keyframes shake { 0%{transform:translateX(0)} 25%{transform:translateX(-2px)} 75%{transform:translateX(2px)} 100%{transform:translateX(0)} }'>[X]</span>" // nothing
+
 #define FONT_COLORED(color, text) "<font color='[color]'>[text]</font>"
 
 #define FONT_SMALL(X) "<font size='1'>[X]</font>"
@@ -246,3 +259,14 @@ var/const/NEGATIVE_INFINITY = -1#INF // win: -1.#INF, lin: -inf
 #define istimer(O) istype(O, /obj/item/device/assembly/timer)
 
 #define isscp2343(A) istype(A, /mob/living/carbon/human/scp343/scp2343)
+
+// for alists
+#define A_LAZYINITLIST(AL) if (!AL) { AL = alist(); }
+#define A_LAZYACCESS(L, I) (L ? L[I] : null)
+#define A_UNSETEMPTY(AL) if(!length(AL)) { AL = null; }
+#define A_LAZYREMOVE(AL, I) if(AL) { AL -= I; A_UNSETEMPTY(AL) }
+#define A_LAZYSET(AL, A, I) if(!AL) { AL = alist(); } AL[A] = I;
+#define A_LAZYCLEARLIST(AL) if(AL) { AL.Cut(); AL = null; }
+#define A_LAZYLEN(AL) length(AL)
+#define A_LAZYADDASSOC(L, K, V) if(!L) { L = alist(); } L[K] += list(V);
+#define A_LAZYREMOVEASSOC(L, K, V) if(L) { if(L[K]) { L[K] -= V; if(!length(L[K])) L -= K; } if(!length(L)) L = null; }

@@ -41,8 +41,13 @@
 			I = image('icons/obj/catwalks.dmi', "catwalk[connections[i]]", dir = 1<<(i-1))
 			add_overlay(I)
 	if(plated_tile)
-		I = image('icons/obj/catwalks.dmi', "plated")
-		I.color = plated_tile.color
+		if(ispath(plated_tile, /decl/flooring/tiling/mono/dark))
+			I = image('icons/obj/catwalks.dmi', "plated_dark")
+		else if(ispath(plated_tile, /decl/flooring/tiling/mono/white))
+			I = image('icons/obj/catwalks.dmi', "plated_white")
+		else
+			I = image('icons/obj/catwalks.dmi', "plated")
+			I.color = plated_tile.color
 		add_overlay(I)
 
 /obj/structure/catwalk/ex_act(severity)
@@ -161,7 +166,7 @@
 		warning("Frame Spawner: A catwalk already exists at [loc.x]-[loc.y]-[loc.z]")
 	else
 		var/obj/structure/catwalk/C = new /obj/structure/catwalk(loc)
-		C.plated_tile += new plating_type
+		C.plated_tile = plating_type
 		C.name = "plated catwalk"
 		C.update_icon()
 	activated = 1

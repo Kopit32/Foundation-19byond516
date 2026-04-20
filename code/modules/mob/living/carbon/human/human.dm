@@ -60,6 +60,10 @@
 	if(species.has_fine_manipulation)
 		ADD_TRAIT(src, TRAIT_ADVANCED_TOOL_USER, ROUNDSTART_TRAIT)
 
+	if(client)
+		add_language(LANGUAGE_ENGLISH)
+		update_languages()
+
 /mob/living/carbon/human/Destroy()
 	if (dream_timer)
 		deltimer(dream_timer)

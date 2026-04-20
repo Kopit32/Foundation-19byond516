@@ -35,7 +35,11 @@
 		"cute kitty", //Name (Should not be the scp desg, more like what it can be described as to viewers)
 		SCP_EUCLID, //Obj Class
 		"247", //Numerical Designation
+		SCP_PLAYABLE
 	)
+
+	SCP.min_time = 30 MINUTES
+	SCP.min_playercount = 18
 
 	start_turf = get_turf(src)
 

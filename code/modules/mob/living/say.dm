@@ -166,7 +166,7 @@ var/list/channel_to_radio_key = new
 /mob/living/proc/bogatyr_say_messsage(message=null)
 	if(!message)
 		return
-	
+
 	message = html_decode(message)
 
 	for(var/k in GLOB.special_words)
@@ -361,7 +361,7 @@ var/list/channel_to_radio_key = new
 			spawn(0)
 				if(O) //It's possible that it could be deleted in the meantime.
 					O.hear_talk(src, stars(message), verb, speaking)
-	INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, animate_chat), message, speaking, italics, speech_bubble_recipients, whispering, unique)
+	INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, animate_chat), message, speaking, italics, speech_bubble_recipients, whispering, unique, message_mode)
 
 	if(LAZYLEN(speech_bubble_recipients) && !whispering)
 		show_sound_effect(src.loc, src, soundicon = SFX_ICON_SMALL)

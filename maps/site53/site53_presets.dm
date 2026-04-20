@@ -13,6 +13,9 @@
 #define NETWORK_895 "SCP-895 CCTV Network (CAUTION!)"
 #define NETWORK_280 "SCP-280 CCTV Network"
 #define NETWORK_082 "SCP-082 CCTV Network"
+#define NETWORK_939 "SCP-939 CCTV Network"
+#define NETWORK_079 "SCP-079 CCTV Network"
+#define NETWORK_017 "SCP-017 CCTV Network"
 #define NETWORK_RESWING "Research CCTV Network"
 /datum/map/site53/get_network_access(network)
 	switch(network)
@@ -46,6 +49,12 @@
 			return ACCESS_SCIENCE_LVL1
 		if(NETWORK_895)
 			return ACCESS_SCIENCE_LVL3
+		if(NETWORK_939)
+			return ACCESS_SCIENCE_LVL2
+		if(NETWORK_079)
+			return ACCESS_SCIENCE_LVL3
+		if(NETWORK_017)
+			return ACCESS_SCIENCE_LVL3
 		if(NETWORK_RESWING)
 			return ACCESS_SCIENCE_LVL1
 	return get_shared_network_access(network) || ..()
@@ -68,7 +77,10 @@
 		NETWORK_012,
 		NETWORK_895,
 		NETWORK_035,
-		NETWORK_343
+		NETWORK_343,
+		NETWORK_939,
+		NETWORK_079,
+		NETWORK_017
 	)
 
 //
@@ -120,6 +132,15 @@
 
 /obj/machinery/camera/network/scp895
 	network = list(NETWORK_895)
+
+/obj/machinery/camera/network/scp939
+	network = list(NETWORK_939)
+
+/obj/machinery/camera/network/scp079
+	network = list(NETWORK_079)
+
+/obj/machinery/camera/network/scp017
+	network = list(NETWORK_017)
 
 /obj/machinery/camera/network/reswing
 	network = list(NETWORK_RESWING)

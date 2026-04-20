@@ -6,6 +6,7 @@
 	pixel_x = -16
 	layer = ABOVE_HUMAN_LAYER
 	var/list/icon_states = list()
+	plane = 3
 
 /obj/structure/flora/tree/Initialize()
 	. = ..()
@@ -113,6 +114,7 @@
 	icon = 'icons/obj/plants.dmi'
 	icon_state = "plant-26"
 	layer = ABOVE_HUMAN_LAYER
+	plane = 3
 
 //newbushes
 
@@ -398,3 +400,11 @@
 	name = "fancy trimmed ferny potted plant"
 	desc = "This leafy desk fern seems to have been trimmed too much."
 	icon_state = "plant-30"
+
+/obj/structure/flora/tree/bigtree
+	icon = 'icons/misc/trees.dmi'
+	icon_state = "bigtree1"
+	icon_states = list("bigtree1", "bigtree2", "bigtree3", "bigtree4")
+	pixel_x = -65
+	pixel_y = -8
+	plane = 3

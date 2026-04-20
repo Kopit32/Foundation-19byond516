@@ -464,6 +464,22 @@
 	area_flags = AREA_FLAG_RAD_SHIELDED
 	sound_env = SMALL_ENCLOSED
 
+
+/area/site53/lhcz/scp017
+	name = "\improper SCP-017 Containment Chamber"
+	icon_state = "research"
+	area_flags = AREA_FLAG_RAD_SHIELDED
+
+/area/site53/lhcz/scp079
+	name = "\improper SCP-079 Containment Chamber"
+	icon_state = "research"
+	area_flags = AREA_FLAG_RAD_SHIELDED
+
+/area/site53/lhcz/scp019
+	name = "\improper SCP-019 Containment Chamber"
+	icon_state = "research"
+	area_flags = AREA_FLAG_RAD_SHIELDED
+
 /area/site53/llcz/scp012
 	name = "\improper SCP-012"
 	icon_state = "research"
@@ -918,6 +934,11 @@
 	icon_state = "fpmaint"
 	area_flags = AREA_FLAG_RAD_SHIELDED
 
+/area/site53/uhcz/scp2427
+	name = "\improper SCP-2427 Containment Chamber"
+	icon_state = "research"
+	area_flags = AREA_FLAG_RAD_SHIELDED
+
 /area/site53/uhcz/scp106containment
 	name = "\improper SCP-106 Containment Chamber"
 	icon_state = "research"
@@ -1279,6 +1300,38 @@
 	name = "\improper SCP-1102 Bunker Entrance"
 	icon_state = "checkpoint1"
 	area_flags = AREA_FLAG_RAD_SHIELDED
+
+/area/site53/lhcz/scp330room
+	name = "\improper SCP-330 Containment Chamber"
+	icon_state = "research"
+	area_flags = AREA_FLAG_RAD_SHIELDED
+
+/area/site53/lhcz/scp1366entrance
+	name = "\improper SCP-1366-RU Containment Chamber Entrance"
+	icon_state = "research"
+	area_flags = AREA_FLAG_RAD_SHIELDED
+
+/area/site53/lhcz/scp1366room
+	name = "\improper SCP-1366-RU Containment Chamber"
+	icon_state = "research"
+	area_flags = AREA_FLAG_RAD_SHIELDED
+
+/area/site53/lhcz/scp939observation
+	name = "\improper SCP-939 Observation Room"
+	icon_state = "research"
+	area_flags = AREA_FLAG_RAD_SHIELDED
+
+/area/site53/lhcz/scp939chamber
+	name = "\improper SCP-939 Containment Chamber"
+	icon_state = "research"
+	area_flags = AREA_FLAG_RAD_SHIELDED
+
+/area/site53/uhcz/scp939enclosure
+	name = "\improper SCP-939 Enclosure"
+	icon_state = "research"
+	area_flags = AREA_FLAG_RAD_SHIELDED
+	requires_power = 0
+	dynamic_lighting = 0
 
 /area/site53/lhcz/scp1102room
 	name = "\improper SCP-1102-RU Containment Chamber"

@@ -102,6 +102,31 @@
 	update_action_buttons()
 	update_mouse_pointer()
 
+	// BYOND 516 Client join fix - view initialization timing completely changed
+	// BYOND 516 defers view setup until all client.New() processing is fully completed
+	spawn(25)
+		// Wait until mob is properly attached and spawned in world
+		var/attempts = 0
+		while(attempts < 15)
+			if(!src || !client || !loc || client.mob != src)
+				sleep(3)
+				attempts++
+				continue
+			break
+
+		// Only proceed if mob is still valid and connected
+		if(!src || !client || !loc || client.mob != src)
+			return
+
+		// BYOND 516 requires double call for view systems to initialize correctly
+		sleep(4)
+		update_cone_size()
+		update_lighting_size()
+		sleep(2)
+		reload_fullscreen()
+		update_cone_size()
+		update_lighting_size()
+
 /mob/living/carbon/Login()
 	. = ..()
 	if(internals && internal)

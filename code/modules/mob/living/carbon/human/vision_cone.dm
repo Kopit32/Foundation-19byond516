@@ -21,21 +21,25 @@
 		return FALSE
 
 	var/d = get_dir(center, src)
-	var/dx = abs(x - center.x)
-	var/dy = abs(y - center.y)
+	var/dx = x - center.x
+	var/dy = y - center.y
 
 	if(!d || d == dir)
 		return TRUE
-	else if(dir & (dir-1))
+	else if(dir & (dir-1)) // Diagonal direction already
 		return (d & ~dir) ? FALSE : TRUE
 	else if(!(d & dir))
 		return FALSE
-	else if(dx == dy)
-		return TRUE
-	else if(dy > dx)
-		return (dir & (NORTH|SOUTH)) ? TRUE : FALSE
 
-	return (dir & (EAST|WEST)) ? TRUE : FALSE
+	// Calculate angle properly for widescreen support
+	var/angle = arctan(abs(dy), abs(dx))
+	var/half_cone = 45 // 90 degree total FOV
+
+	switch(dir)
+		if(NORTH, SOUTH)
+			angle = arctan(abs(dx), abs(dy))
+
+	return (angle <= half_cone)
 
 /mob/dead/InCone(mob/center, dir = NORTH)
 	return FALSE
@@ -57,33 +61,33 @@
 			if(A.InCone(center, dir))
 				. += A
 
-/mob/proc/update_vision_cone()
-	return
-
 /mob/proc/update_cone_size()
-	return
-
-/mob/living/carbon/human/update_cone_size()
-	if(!client)
+	if(!isliving(src))
 		return
+	var/mob/living/L = src
+	if(!L.client)
+		return
+	if(L.fov)
+		L.fov.update_size(L.client.view)
+	if(L.fov_mask)
+		L.fov_mask.update_size(L.client.view)
 
-	fov.update_size(client.view)
-	fov_mask.update_size(client.view)
-
-/mob/living/carbon/human/update_vision_cone()
+/mob/living/proc/update_vision_cone()
 	if(!client) //This doesn't actually hide shit from clientless mobs, so just keep them from running this.
 		return
 	check_fov()
-	fov.dir = dir
-	fov_mask.dir = dir
+	if(fov)
+		fov.dir = dir
+	if(fov_mask)
+		fov_mask.dir = dir
 
-/mob/living/carbon/human/proc/SetFov(show)
+/mob/living/proc/SetFov(show)
 	if(!show)
 		hide_cone()
 	else
 		show_cone()
 
-/mob/living/carbon/human/proc/check_fov()
+/mob/living/proc/check_fov()
 	if(!client)
 		return
 
@@ -97,13 +101,13 @@
 		hide_cone()
 
 //Making these generic procs so you can call them anywhere.
-/mob/living/carbon/human/proc/show_cone()
+/mob/living/proc/show_cone()
 	if(fov)
 		fov.alpha = 255
 		usefov = TRUE
 		fov_mask.alpha = 255
 
-/mob/living/carbon/human/proc/hide_cone()
+/mob/living/proc/hide_cone()
 	if(fov)
 		fov.alpha = 0
 		usefov = FALSE

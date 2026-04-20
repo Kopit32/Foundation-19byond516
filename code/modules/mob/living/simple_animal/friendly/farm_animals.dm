@@ -379,3 +379,25 @@ var/global/chicken_count = 0
 	speak = list("Cluck!","BWAAAAARK BWAK BWAK BWAK!","Bwaak bwak.")
 	emote_hear = list("clucks")
 	emote_see = list("pecks at the ground","flaps its wings viciously")
+
+/mob/living/simple_animal/friendly/goose/doctor
+	name = "\improper Beaker"
+	desc = "Funny goose girl with white medical coat."
+	gender = FEMALE
+	icon = 'icons/mob/simple_animal/goose.dmi'
+	icon_state = "goose_labcoat"
+	item_state = "goose_labcoat"
+	icon_living = "goose_labcoat"
+	icon_dead = "goose_labcoat_dead"
+	turns_per_move = 2
+
+	ai_holder_type = /datum/ai_holder/simple_animal/passive/goose/doctor
+	say_list_type = /datum/say_list/goose/doctor
+
+/datum/ai_holder/simple_animal/passive/goose/doctor
+	speak_chance = 2
+
+/datum/say_list/goose/doctor
+	speak = list("Honk!","Hiss.")
+	emote_hear = list("hisses")
+	emote_see = list("pecks at the ground","flaps its wings")

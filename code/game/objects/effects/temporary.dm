@@ -51,11 +51,77 @@
 		target_pixel_x = -16
 	animate(src, pixel_x = target_pixel_x, pixel_y = target_pixel_y, alpha = 0, time = duration)
 
-// Attack effect
+// smash effect
 /obj/effect/temp_visual/smash
 	name = "smash"
 	icon_state = "smash"
-	duration = 8
+	opacity = FALSE
+	anchored = TRUE
+	mouse_opacity = FALSE
+	layer = ABOVE_HUMAN_LAYER
+	plane = 2
+	duration = 1 SECONDS
+
+/obj/effect/temp_visual/smash/Initialize()
+	. = ..()
+	addtimer(CALLBACK(src, PROC_REF(FadeOut)), (duration * 0.8))
+
+/obj/effect/temp_visual/smash/proc/FadeOut()
+	animate(src, alpha = 0, (duration * 0.2))
+
+// punch effect
+/obj/effect/temp_visual/punch
+	name = "punch"
+	icon_state = "punch"
+	opacity = FALSE
+	anchored = TRUE
+	mouse_opacity = FALSE
+	layer = ABOVE_HUMAN_LAYER
+	plane = 2
+	duration = 1 SECONDS
+
+/obj/effect/temp_visual/punch/Initialize()
+	. = ..()
+	addtimer(CALLBACK(src, PROC_REF(FadeOut)), (duration * 0.8))
+
+/obj/effect/temp_visual/punch/proc/FadeOut()
+	animate(src, alpha = 0, (duration * 0.2))
+
+// kick effect
+/obj/effect/temp_visual/kick
+	name = "kick"
+	icon_state = "kick"
+	opacity = FALSE
+	anchored = TRUE
+	mouse_opacity = FALSE
+	layer = ABOVE_HUMAN_LAYER
+	plane = 2
+	duration = 1 SECONDS
+
+/obj/effect/temp_visual/kick/Initialize()
+	. = ..()
+	addtimer(CALLBACK(src, PROC_REF(FadeOut)), (duration * 0.8))
+
+/obj/effect/temp_visual/kick/proc/FadeOut()
+	animate(src, alpha = 0, (duration * 0.2))
+
+// Disarm effect
+/obj/effect/temp_visual/disarm
+	name = "disarm"
+	icon_state = "disarm"
+	opacity = FALSE
+	anchored = TRUE
+	mouse_opacity = FALSE
+	layer = ABOVE_HUMAN_LAYER
+	plane = 2
+	duration = 1 SECONDS
+
+/obj/effect/temp_visual/disarm/Initialize()
+	. = ..()
+	addtimer(CALLBACK(src, PROC_REF(FadeOut)), (duration * 0.8))
+
+/obj/effect/temp_visual/disarm/proc/FadeOut()
+	animate(src, alpha = 0, (duration * 0.2))
 
 // Smoke effect
 

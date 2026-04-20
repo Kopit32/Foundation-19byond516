@@ -103,6 +103,32 @@ var/global/list/sparring_attack_cache = list()
 	if(istype(C) && prob(10))
 		C.leave_evidence(user)
 
+// kick effect
+/obj/item/apply_hit_effect(mob/living/target, mob/living/user, hit_zone)
+	. = ..()
+	addtimer(CALLBACK(src, PROC_REF(SpawnKickEffect), target)) //Spawn kick effect, as it looks good.
+	if(src==(/obj/item/natural_weapon/scp939))
+		return
+
+/obj/item/proc/SpawnKickEffect(mob/living/target)
+	if(!QDELETED(target))
+		var/obj/effect/temp_visual/kick/C = new (get_turf(target))
+		C.pixel_x = rand(-8, 8)
+		C.pixel_y = rand(-8, 8)
+
+// punch effect
+/obj/item/apply_hit_effect(mob/living/target, mob/living/user, hit_zone)
+	. = ..()
+	addtimer(CALLBACK(src, PROC_REF(SpawnPunchEffect), target)) //Spawn punch effect, as it looks good.
+	if(src==(/obj/item/natural_weapon/scp939))
+		return
+
+/obj/item/proc/SpawnPunchEffect(mob/living/target)
+	if(!QDELETED(target))
+		var/obj/effect/temp_visual/punch/P = new (get_turf(target))
+		P.pixel_x = rand(-8, 8)
+		P.pixel_y = rand(-8, 8)
+
 /datum/unarmed_attack/proc/show_attack(mob/living/carbon/human/user, mob/living/carbon/human/target, zone, attack_damage)
 	var/obj/item/organ/external/affecting = target.get_organ(zone)
 	user.visible_message(SPAN_WARNING("[user] [pick(attack_verb)] [target] in the [affecting.name]!"))
@@ -154,6 +180,12 @@ var/global/list/sparring_attack_cache = list()
 /datum/unarmed_attack/punch/show_attack(mob/living/carbon/human/user, mob/living/carbon/human/target, zone, attack_damage)
 	var/obj/item/organ/external/affecting = target.get_organ(zone)
 	var/organ = affecting.name
+
+		// Spawn smash visual effect
+	if(!QDELETED(target))
+		var/obj/effect/temp_visual/punch/P = new (get_turf(target))
+		P.pixel_x = rand(-8, 8)
+		P.pixel_y = rand(-8, 8)
 
 	attack_damage = Clamp(attack_damage, 1, 5) // We expect damage input of 1 to 5 for this proc. But we leave this check juuust in case.
 	playsound(user.loc, attack_sound, 25, 1, -1)
@@ -220,6 +252,12 @@ var/global/list/sparring_attack_cache = list()
 	var/obj/item/organ/external/affecting = target.get_organ(zone)
 	var/organ = affecting.name
 
+		// Spawn kick visual effect
+	if(!QDELETED(target))
+		var/obj/effect/temp_visual/kick/C = new (get_turf(target))
+		C.pixel_x = rand(-8, 8)
+		C.pixel_y = rand(-8, 8)
+
 	attack_damage = Clamp(attack_damage, 1, 5)
 	playsound(user.loc, attack_sound, 25, 1, -1)
 
@@ -260,6 +298,12 @@ var/global/list/sparring_attack_cache = list()
 	var/obj/item/organ/external/affecting = target.get_organ(zone)
 	var/organ = affecting.name
 	var/obj/item/clothing/shoes = user.shoes
+
+		// Spawn kick visual effect
+	if(!QDELETED(target))
+		var/obj/effect/temp_visual/kick/C = new (get_turf(target))
+		C.pixel_x = rand(-8, 8)
+		C.pixel_y = rand(-8, 8)
 
 	attack_damage = Clamp(attack_damage, 1, 5)
 	playsound(user.loc, attack_sound, 25, 1, -1)

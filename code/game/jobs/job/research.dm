@@ -200,7 +200,8 @@
 	    SKILL_MEDICAL     = SKILL_EXPERIENCED,
 	    SKILL_SCIENCE     = SKILL_MASTER
 	)
-	psi_faculties = list(PSI_COERCION = PSI_RANK_OPERANT) //Basic level of Psionics, with ability to read others.
+	psi_faculties = list(
+		PSI_COERCION = PSI_RANK_OPERANT) //Basic level of Psionics, with ability to read others.
 
 /datum/job/seniorscientist
 	title = "Senior Researcher"

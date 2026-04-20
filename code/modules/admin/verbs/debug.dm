@@ -290,6 +290,11 @@
 	if(undress)
 		H.delete_inventory(TRUE)
 	outfit.equip(H)
+
+	if(!H.languages.len)
+		H.add_language(LANGUAGE_ENGLISH)
+		H.set_default_language(all_languages[LANGUAGE_ENGLISH])
+
 	log_and_message_staff("changed the equipment of [key_name(H)] to [outfit.name].")
 
 /client/proc/startSinglo()

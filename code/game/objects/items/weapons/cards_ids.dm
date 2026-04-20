@@ -873,6 +873,8 @@ GLOBAL_LIST_EMPTY(conversion_cards)
 	name = "central council command ID"
 	desc = "A black ID. Looks like the person wearing this won't give it up easy."
 	assignment = "O5 Representative"
+	icon_state = "o5"
+	item_state = "o5"
 
 /obj/item/card/id/mtf/Initialize()
 	. = ..()
@@ -1041,22 +1043,32 @@ GLOBAL_LIST_EMPTY(conversion_cards)
 /obj/item/card/id/dassignment/dmining
 	name = "mining assignment card"
 	access = list(ACCESS_DCLASS_MINING)
+	icon_state = "classdmine"
+	item_state = "classdmine"
 
 /obj/item/card/id/dassignment/dbotany
 	name = "botany assignment card"
 	access = list(ACCESS_DCLASS_BOTANY)
+	icon_state = "classdbot"
+	item_state = "classdbot"
 
 /obj/item/card/id/dassignment/dkitchen
 	name = "kitchen assignment card"
 	access = list(ACCESS_DCLASS_KITCHEN)
+	icon_state = "classdcook"
+	item_state = "classdcook"
 
 /obj/item/card/id/dassignment/djanitorial
 	name = "janitorial assignment card"
 	access = list(ACCESS_DCLASS_JANITORIAL)
+	icon_state = "classdjan"
+	item_state = "classdjan"
 
 /obj/item/card/id/dassignment/dmedical
 	name = "medical assignment card"
 	access = list(ACCESS_DCLASS_MEDICAL)
+	icon_state = "classdmed"
+	item_state = "classdmed"
 
 /obj/item/card/id/dassignment/dluxury
 	name = "luxury reward card"

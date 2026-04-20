@@ -301,6 +301,9 @@
 	playsound(loc, 'sounds/weapons/smash.ogg', 75, 1)
 	show_sound_effect(loc, user)
 
+	var/obj/effect/temp_visual/sparkle/cyan/sparkles = new(loc)
+	animate(sparkles, alpha = 0, time = rand(3,6))
+	playsound(loc, SFX_SPARK, 50, 1)
 /obj/machinery/shieldwall/Process()
 	if(needs_power)
 		if(isnull(gen_primary)||isnull(gen_secondary))

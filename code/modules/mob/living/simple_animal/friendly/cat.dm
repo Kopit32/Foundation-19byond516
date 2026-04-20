@@ -184,6 +184,19 @@
 	icon_dead = "cat_dead"
 	skin_material = MATERIAL_SKIN_FUR_BLACK
 
+/mob/living/simple_animal/friendly/cat/fluff/Limur
+	name = "Limur"
+	desc = "Funny cat with red funny bowtie."
+	gender = MALE
+	icon_state = "cat037"
+	item_state = "cat037"
+	icon_living = "cat037"
+	icon_dead = "cat037_dead"
+	skin_material = MATERIAL_SKIN_FUR_BLACK
+
+	ai_holder_type = /datum/ai_holder/simple_animal/passive/cat
+	say_list_type = /datum/say_list/cat
+
 /mob/living/simple_animal/friendly/cat/kitten
 	name = "kitten"
 	desc = "D'aaawwww."

@@ -52,7 +52,42 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 //	var/list/lights				// list of all lights on this area
 	var/list/all_doors = null		//Added by Strumpetplaya - Alarm Change - Contains a list of doors adjacent to this area
 	var/air_doors_activated = 0
-	var/list/ambience = list('sounds/ambience/ambigen1.ogg','sounds/ambience/ambigen3.ogg','sounds/ambience/ambigen4.ogg','sounds/ambience/ambigen5.ogg','sounds/ambience/ambigen6.ogg','sounds/ambience/ambigen7.ogg','sounds/ambience/ambigen8.ogg','sounds/ambience/ambigen9.ogg','sounds/ambience/ambigen10.ogg','sounds/ambience/ambigen11.ogg','sounds/ambience/ambigen12.ogg','sounds/ambience/ambigen14.ogg')
+	var/list/ambience = list(
+	'sounds/ambience/ambigen1.ogg',
+	'sounds/ambience/ambigen3.ogg',
+	'sounds/ambience/ambigen4.ogg',
+	'sounds/ambience/ambigen5.ogg',
+	'sounds/ambience/ambigen6.ogg',
+	'sounds/ambience/ambigen7.ogg',
+	'sounds/ambience/ambigen8.ogg',
+	'sounds/ambience/ambigen9.ogg',
+	'sounds/ambience/ambigen10.ogg',
+	'sounds/ambience/ambigen11.ogg',
+	'sounds/ambience/ambigen12.ogg',
+	'sounds/ambience/ambigen14.ogg',
+	'sounds/ambience/ambigen1.ogg',
+	'sounds/ambience/ambimine.ogg',
+	'sounds/ambience/ambimo2.ogg',
+	'sounds/ambience/ambisin1.ogg',
+	'sounds/ambience/ambisin3.ogg',
+	'sounds/ambience/ambisin4.ogg',
+	'sounds/ambience/ambispace1.ogg',
+	'sounds/ambience/ambispace2.ogg',
+	'sounds/ambience/ambispace3.ogg',
+	'sounds/ambience/ambispace4.ogg',
+	'sounds/ambience/ambispace5.ogg',
+	'sounds/ambience/eeriejungle1.ogg',
+	'sounds/ambience/eeriejungle2.ogg',
+	'sounds/ambience/magma.ogg',
+	'sounds/ambience/meat_monster_arrival.ogg',
+	'sounds/ambience/ominous1.ogg',
+	'sounds/ambience/ominous2.ogg',
+	'sounds/ambience/ominous3.ogg',
+	'sounds/ambience/spookyspace1.ogg',
+	'sounds/ambience/spookyspace2.ogg',
+	'sounds/ambience/SCP_CB_AI_ambient.ogg',
+	'sounds/ambience/SCP_CB_Satiate_Strings_ambient.ogg'
+	)
 	var/list/forced_ambience = null
 	var/sound_env = STANDARD_STATION
 	var/turf/base_turf //The base turf type of the area, which can be used to override the z-level's base turf
@@ -75,7 +110,12 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	power_environ = 0
 	has_gravity = 0
 	area_flags = AREA_FLAG_EXTERNAL | AREA_FLAG_IS_NOT_PERSISTENT
-	ambience = list('sounds/ambience/ambispace1.ogg','sounds/ambience/ambispace2.ogg','sounds/ambience/ambispace3.ogg','sounds/ambience/ambispace4.ogg','sounds/ambience/ambispace5.ogg')
+	ambience = list('sounds/ambience/ambispace1.ogg',
+	'sounds/ambience/ambispace2.ogg',
+	'sounds/ambience/ambispace3.ogg',
+	'sounds/ambience/ambispace4.ogg',
+	'sounds/ambience/ambispace5.ogg'
+	)
 	secure = FALSE
 
 /area/space/atmosalert()

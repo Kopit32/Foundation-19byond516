@@ -441,12 +441,14 @@
 /obj/machinery/light/proc/flicker(amount = rand(10, 20))
 	if(flickering) return
 	flickering = 1
+
 	spawn(0)
 		if(on && get_status() == LIGHT_OK)
 			for(var/i = 0; i < amount; i++)
 				if(get_status() != LIGHT_OK) break
 				on = !on
 				update_icon(0)
+				playsound(loc, 'sounds/effects/electric/light_flick.ogg', 80, TRUE)
 				sleep(rand(5, 15))
 			on = (get_status() == LIGHT_OK)
 			update_icon(0)
@@ -622,9 +624,9 @@
 	var/sound_on
 	var/random_tone = TRUE
 	var/list/random_tone_options = list(
-		"#fffee0",
-		"#e0fefe",
-		"#fefefe",
+		"#fdfaae"//, //try to make scp vibe
+	//	"#c8ffff", // Celadon sucks
+	//	"#fefefe",
 	)
 
 /obj/item/light/Initialize()

@@ -66,7 +66,7 @@
 		SCP_PLAYABLE
 	)
 
-	SCP.min_playercount = 30
+	SCP.min_playercount = 20
 
 	spawn_area = get_area(src)
 	start_turf = get_turf(src)

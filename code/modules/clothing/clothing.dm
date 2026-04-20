@@ -458,11 +458,6 @@ BLIND     // can't see anything
 		slot_l_hand_str = 'icons/mob/onmob/items/lefthand_hats.dmi',
 		slot_r_hand_str = 'icons/mob/onmob/items/righthand_hats.dmi',
 		)
-	sprite_sheets = list(
-		SPECIES_VOX = 'icons/mob/species/vox/onmob_head_vox.dmi',
-		SPECIES_VOX_ARMALIS = 'icons/mob/species/vox/onmob_head_vox_armalis.dmi',
-		SPECIES_NABBER = 'icons/mob/species/nabber/onmob_head_gas.dmi'
-		)
 	body_parts_covered = HEAD
 	slot_flags = SLOT_HEAD
 	w_class = ITEM_SIZE_SMALL

@@ -346,6 +346,12 @@
 
 /mob/new_player/proc/close_spawn_windows()
 	close_browser(src, "window=latechoices") //closes late choices window
+	// Cone fix
+	for(var/mob/M in GLOB.player_list)
+		M.update_cone_size()
+		M.reload_fullscreen()
+		M.update_lighting_size()
+
 
 /mob/new_player/proc/check_species_allowed(datum/species/S, show_alert = TRUE)
 	if(!S.is_available_for_join() && !has_admin_rights())
@@ -397,10 +403,28 @@
 
 /mob/new_player/verb/next_lobby_track()
 	set name = "Play Different Lobby Track"
-	set category = "OOC"
+	set category = "Server"
 
 	if(get_preference_value(/datum/client_preference/play_lobby_music) == GLOB.PREF_NO)
 		return
-	var/decl/audio/track/track = GLOB.using_map.get_lobby_track(GLOB.using_map.lobby_track.type)
-	sound_to(src, track.get_sound())
-	to_chat(src, track.get_info())
+
+	var/list/available_tracks = subtypesof(/decl/audio/track)
+	var/list/track_names = list()
+	var/list/track_types = list()
+
+	for(var/track_type in available_tracks)
+		var/decl/audio/track/track = track_type
+		if(track.title)
+			track_names.Add("[track.title] - [track.author]")
+			track_types.Add(track_type)
+
+	var/selection = input(src, "Select a lobby track to play:", "Lobby Music", null) as null|anything in track_names
+	if(!selection)
+		return
+
+	var/index = track_names.Find(selection)
+	if(index)
+		var/decl/audio/track/selected_track = initial(track_types[index])
+		sound_to(src, sound(selected_track.source, repeat = 0, wait = 0, volume = 85, channel = GLOB.lobby_sound_channel))
+		to_chat(world, SPAN_FLASH_GREEN("Now playing: [selected_track.title] by [selected_track.author]")) // green blink
+

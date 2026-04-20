@@ -7,7 +7,7 @@
 	throwforce = 10.0
 	throw_speed = 5
 	throw_range = 10
-	w_class = ITEM_SIZE_NORMAL
+	w_class = ITEM_SIZE_HUGE
 	attack_verb = list("mopped", "bashed", "bludgeoned", "whacked")
 	var/mopping = 0
 	var/mopcount = 0
