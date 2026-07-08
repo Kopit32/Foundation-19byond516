@@ -239,9 +239,10 @@
 //Pills and autoinjectors.
 /obj/item/storage/pill_bottle/amnesticsa
 	name = "pill bottle (Class-A Amnestics)"
+	icon_state = "pill_canister_a"
 	desc = "Contains Class-A Amnestics, used to erase recently-formed memories before they enter long-term storage."
 	startswith = list(/obj/item/reagent_containers/pill/amnestics/classa = 14)
-	wrapper_color = COLOR_RED
+	//wrapper_color = COLOR_RED
 
 /obj/item/reagent_containers/pill/amnestics/classa
 	name = "class a amnestic pill (10u)"
@@ -251,13 +252,14 @@
 /obj/item/reagent_containers/pill/amnestics/classa/New()
 	..()
 	reagents.add_reagent(/datum/reagent/medicine/amnestics/classa, 10)
-	color = reagents.get_color()
+	//color = reagents.get_color()
 
 /obj/item/storage/pill_bottle/amnesticsb
 	name = "pill bottle (Class-B Amnestics)"
+	icon_state = "pill_canister_b"
 	desc = "Contains Class-B Amnestics, used to erase memories from the last two weeks."
 	startswith = list(/obj/item/reagent_containers/pill/amnestics/classb = 14)
-	wrapper_color = COLOR_CYAN
+	//wrapper_color = COLOR_CYAN
 
 /obj/item/reagent_containers/pill/amnestics/classb
 	name = "class b amnestic pill (3u)"
@@ -325,8 +327,9 @@
 /obj/item/storage/pill_bottle/amnesticsi
 	name = "pill bottle (Class-I Amnestics)"
 	desc = "Contains Class-I Amnestics, used to temporarily prevent the recall of the past."
+	icon_state = "pill_canister_i"
 	startswith = list(/obj/item/reagent_containers/pill/amnestics/classi = 14)
-	wrapper_color = COLOR_PURPLE
+	//wrapper_color = COLOR_PURPLE
 
 /obj/item/reagent_containers/pill/amnestics/classi
 	name = "class i amnestic pill (5u)"
@@ -336,7 +339,7 @@
 /obj/item/reagent_containers/pill/amnestics/classi/New()
 	..()
 	reagents.add_reagent(/datum/reagent/medicine/amnestics/classi, 5)
-	color = reagents.get_color()
+	//color = reagents.get_color()
 
 //Amnestic chemical reactions.
 

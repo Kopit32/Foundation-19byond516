@@ -68,3 +68,4 @@ __pycache__
 flyway.conf
 
 .cache
+config/admins.txt

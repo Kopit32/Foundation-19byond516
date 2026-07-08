@@ -211,9 +211,6 @@
 
 	transform = matrix() * 0.9
 
-	if(!(src in SSprocessing.processing))
-		START_PROCESSING(SSprocessing, src)
-
 //Incorporates lots of 2427-3 code, just because its good
 
 /mob/living/simple_animal/hostile/scp939/Bump(atom/A)
@@ -466,5 +463,4 @@
 	sound_cooldown = world.time + sound_cooldown_time
 
 /mob/living/simple_animal/hostile/scp939/Destroy()
-	STOP_PROCESSING(SSprocessing, src)
 	return ..()

@@ -165,7 +165,7 @@
 /turf/simulated/floor/reinforced,
 /area/site53/tram/maintrain/Tunnel)
 "v" = (
-/obj/effect/shuttle_landmark/uiu_heli/out,
+/*/obj/effect/shuttle_landmark/uiu_heli/out,*/
 /turf/unsimulated/wall,
 /area/space)
 "w" = (
