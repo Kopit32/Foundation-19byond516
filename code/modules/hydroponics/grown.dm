@@ -1,3 +1,10 @@
+#define GROWN_POTATO "potato"
+#define GROWN_CARROT "carrot"
+#define GROWN_TOMATO "tomato"
+#define GROWN_CABAGGE "cabbage"
+#define GROWN_EGGPLANT "eggplant"
+#define GROWN_TOBACO "tobaco"
+
 //Grown foods.
 /obj/item/reagent_containers/food/snacks/grown
 	name = "fruit"
@@ -334,3 +341,8 @@ var/list/fruit_icon_cache = list()
 		I.color = flesh_colour
 		fruit_icon_cache["slice-[rind_colour]"] = I
 	add_overlay(fruit_icon_cache["slice-[rind_colour]"])
+
+
+/proc/is_grown(obj/item/reagent_containers/food/snacks/grown/G, list/allowed_grown)
+	if(G && length(allowed_grown) && (G.plantname in allowed_grown))
+		return TRUE

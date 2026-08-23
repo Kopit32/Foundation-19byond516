@@ -182,9 +182,9 @@
 
 /datum/stack_recipe/zipgunframe
 	title = "zip gun frame"
-	result_type = /obj/item/zipgunframe
-	req_amount = 5
-	difficulty = 3
+	result_type = /obj/item/zipgunframe_new
+	req_amount = 15
+	difficulty = 2
 
 /datum/stack_recipe/coilgun
 	title = "coilgun stock"

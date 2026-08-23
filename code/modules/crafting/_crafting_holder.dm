@@ -57,3 +57,16 @@
 /obj/item/crafting_holder/proc/update_strings()
 	if(current_crafting_stage.item_desc)
 		desc = current_crafting_stage.item_desc
+
+/obj/item/crafting_holder/attack_self(mob/user)
+	if(current_crafting_stage)
+		var/decl/crafting_stage/next_stage = current_crafting_stage.get_next_stage(null)
+		if(next_stage)
+			to_chat(user, SPAN_NOTICE("You start working on \the [src]..."))
+			if(do_after(user, next_stage.crafting_delay, src))
+				if(QDELETED(src) || user.incapacitated())
+					return
+				if(next_stage.progress_to(null, user, src))
+					advance_to(next_stage, user, null)
+					return
+	. = ..()

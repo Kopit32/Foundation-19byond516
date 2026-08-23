@@ -9,6 +9,7 @@
 	var/begins_with_object_type
 	var/list/next_stages
 	var/product
+	var/crafting_delay = 5 SECONDS
 
 /decl/crafting_stage/New()
 	var/stages = list()
@@ -78,6 +79,19 @@
 	var/obj/item/stack/material/rods/M = thing
 	. = istype(M) && (!stack_material || M.material.name == stack_material) && ..()
 
+/decl/crafting_stage/dried_plant
+	completion_trigger_type = /obj/item/reagent_containers/food/snacks/grown
+	var/list/allowed_plantnames
+
+/decl/crafting_stage/dried_plant/is_appropriate_tool(obj/item/thing)
+	var/obj/item/reagent_containers/food/snacks/grown/G = thing
+	if(!istype(G) || !G.dry)
+		return FALSE
+	. = !length(allowed_plantnames) || is_grown(G, allowed_plantnames)
+
+/decl/crafting_stage/dried_plant/tobacco
+	allowed_plantnames = list("tobacco", "finetobacco", "badtobacco", "puretobacco")
+
 /decl/crafting_stage/welding
 	consume_completion_trigger = FALSE
 
@@ -144,3 +158,9 @@
 	if(. && istype(thing, /obj/item/storage))
 		var/obj/item/storage/box = thing
 		. = (length(box.contents) == 0)
+
+/decl/crafting_stage/hand
+	consume_completion_trigger = FALSE
+
+/decl/crafting_stage/hand/is_appropriate_tool(obj/item/thing)
+	return isnull(thing) || ..()
