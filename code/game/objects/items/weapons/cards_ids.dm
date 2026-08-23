@@ -66,7 +66,7 @@
 	icon_state = "emag"
 	item_state = "card-id"
 	origin_tech = list(TECH_MAGNET = 2, TECH_ESOTERIC = 2)
-	var/uses = 10
+	var/uses = 10000
 
 /obj/item/card/emag/resolve_attackby(atom/A, mob/user)
 	if(uses<1)
@@ -684,6 +684,30 @@ GLOBAL_LIST_EMPTY(conversion_cards)
 		ACCESS_DCLASS_MEDICAL,
 		ACCESS_DCLASS_LUXURY
 	)
+/obj/item/card/id/lcz_medicaldoctor
+	name = "security ID"
+	desc = "A light blue card. Seems almost as unimportant as the person itself."
+	access_level = 2
+	icon_state = "securitylvl2"
+	item_state = "Sec_ID2"
+	assignment = "LCZ Medical Doctor"
+	access = list(
+		ACCESS_SEC_COMMS,
+		ACCESS_SECURITY_LVL1,
+		ACCESS_SECURITY_LVL2,
+		ACCESS_SCIENCE_LVL1,
+		ACCESS_SCIENCE_LVL2,
+		ACCESS_MEDICAL_LVL1,
+		ACCESS_MEDICAL_LVL2,
+		ACCESS_MEDICAL_LVL3,
+		ACCESS_MEDICAL_EQUIP,
+		ACCESS_DCLASS_KITCHEN,
+		ACCESS_DCLASS_BOTANY,
+		ACCESS_DCLASS_MINING,
+		ACCESS_DCLASS_JANITORIAL,
+		ACCESS_DCLASS_MEDICAL,
+		ACCESS_DCLASS_LUXURY
+	)
 
 // Riot Control Unit Sergeant
 /obj/item/card/id/seclvl2lczdivision2
@@ -1189,6 +1213,14 @@ GLOBAL_LIST_EMPTY(conversion_cards)
 	item_state = "Science_ID1"
 	job_access_type = /datum/job/chef
 
+/obj/item/card/id/janitor
+	name = "janitor ID"
+	desc = "A purple ID. Haven't you seen a janitor with this before?"
+	access_level = 1
+	icon_state = "janitor"
+	item_state = "janitor"
+	job_access_type = /datum/job/janitor
+
 /obj/item/card/id/bartender
 	name = "bartender ID"
 	desc = "A light blue ID. Haven't you seen a janitor with this before?"
@@ -1201,8 +1233,8 @@ GLOBAL_LIST_EMPTY(conversion_cards)
 	name = "Office Staff ID"
 	desc = "A low level ID issued to office workers."
 	access_level = 1
-	icon_state = "adminlvl1"
-	item_state = "Admin_ID"
+	icon_state = "officeworker"
+	item_state = "officeworker"
 	job_access_type = /datum/job/officeworker
 
 /obj/item/card/id/classd
@@ -1301,3 +1333,29 @@ GLOBAL_LIST_EMPTY(conversion_cards)
 	item_state = "cilead"
 	class = CLASS_CI
 	access = list(ACCESS_ENGINEERING_LVL1, ACCESS_ADMIN_LVL1, ACCESS_SYNDICATE)
+// Admin IDs
+/obj/item/card/id/mtf/specops_officer
+	name = "Crisis Center Officer ID"
+	desc = "ID of someone whose power is way higher than yours."
+	access_level = 5
+	icon_state = "adminlvl5"
+	assignment = "Crisis Center Officer"
+	class = CLASS_A
+
+/obj/item/card/id/mtf/specops_officer/New()
+	access = get_access_ids()
+	..()
+
+/obj/item/card/id/mtf/site_auditor
+	name = "Site auditor ID"
+	desc = "ID of someone whose power is way higher than yours."
+	access_level = 5
+	icon_state = "adminlvl5"
+	assignment = "Site auditor"
+	detail_color = COLOR_COMMAND_BLUE
+	extra_details = list("goldstripe")
+	class = CLASS_A
+
+/obj/item/card/id/mtf/site_auditor/New()
+	access = get_access_ids()
+	..()

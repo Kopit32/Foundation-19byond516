@@ -107,7 +107,7 @@
 
 	startswith = list(
 		/obj/item/storage/pill_bottle/bicaridine,
-		/obj/item/storage/pill_bottle/dermaline,
+		/obj/item/storage/pill_bottle/kelotane,
 		/obj/item/storage/pill_bottle/dexalin_plus,
 		/obj/item/storage/pill_bottle/dylovene,
 		/obj/item/storage/pill_bottle/tramadol,
@@ -273,7 +273,7 @@
 	name = "pill bottle (Dexalin Plus)"
 	desc = "Contains pills used to treat extreme cases of oxygen deprivation."
 
-	startswith = list(/obj/item/reagent_containers/pill/dexalin_plus = 14)
+	startswith = list(/obj/item/reagent_containers/pill/dexalin_plus = 21)
 	wrapper_color = COLOR_CYAN_BLUE
 
 /obj/item/storage/pill_bottle/dexalin
@@ -287,8 +287,15 @@
 	name = "pill bottle (Dermaline)"
 	desc = "Contains pills used to treat burn wounds."
 
-	startswith = list(/obj/item/reagent_containers/pill/dermaline = 14)
+	startswith = list(/obj/item/reagent_containers/pill/dermaline = 21)
 	wrapper_color = COLOR_ORANGE
+
+/obj/item/storage/pill_bottle/meraline
+	name = "pill bottle (Meraline)"
+	desc = "Contains pills used to treat brute wounds."
+
+	startswith = list(/obj/item/reagent_containers/pill/meraline = 21)
+	wrapper_color = COLOR_RED
 
 /obj/item/storage/pill_bottle/dylovene
 	name = "pill bottle (Dylovene)"
@@ -315,14 +322,14 @@
 	name = "pill bottle (Penicillin)"
 	desc = "A theta-lactam antibiotic. Effective against many diseases likely to be encountered in space."
 
-	startswith = list(/obj/item/reagent_containers/pill/penicillin = 14)
+	startswith = list(/obj/item/reagent_containers/pill/penicillin = 21)
 	wrapper_color = COLOR_PALE_GREEN_GRAY
 
 /obj/item/storage/pill_bottle/tramadol
 	name = "pill bottle (Tramadol)"
 	desc = "Contains pills used to relieve pain."
 
-	startswith = list(/obj/item/reagent_containers/pill/tramadol = 14)
+	startswith = list(/obj/item/reagent_containers/pill/tramadol = 21)
 	wrapper_color = COLOR_PURPLE_GRAY
 
 //Baycode specific Psychiatry pills.
@@ -344,7 +351,7 @@
 	name = "pill bottle (Paroxetine)"
 	desc = "High-strength antidepressant. Only for use in severe depression. 10u dose per pill. <span class='warning'>WARNING: side-effects may include hallucinations.</span>"
 
-	startswith = list(/obj/item/reagent_containers/pill/paroxetine = 14)
+	startswith = list(/obj/item/reagent_containers/pill/paroxetine = 21)
 	wrapper_color = COLOR_GRAY
 
 /obj/item/storage/pill_bottle/antidexafen
@@ -375,22 +382,77 @@
 			/obj/item/reagent_containers/pill/hyronalin
 		)
 
-/obj/item/storage/firstaid/light
-	name = "light first-aid kit"
+/obj/item/storage/firstaid/personal
+	name = "Personal first-aid kit"
 	desc = "It's a small emergency medical kit."
-	icon_state = "light_firstaid"
-	storage_slots = 5
+	icon_state = "personal_firstaid"
+	open_icon = "personal_firstaidopen"
+	use_sound = 'sounds/items/zip.ogg'
+	storage_slots = 7
 	w_class = ITEM_SIZE_SMALL
 	max_w_class = ITEM_SIZE_SMALL
 	startswith = list(
-	/obj/item/clothing/gloves/latex/nitrile,
-	/obj/item/reagent_containers/hypospray/autoinjector,
-	/obj/item/reagent_containers/hypospray/autoinjector/pouch_auto/deletrathol,
-	/obj/item/reagent_containers/hypospray/autoinjector/pouch_auto/dexalin,
-	/obj/item/stack/medical/bruise_pack
+		/obj/item/stack/medical/bruise_pack = 2,
+		/obj/item/stack/medical/ointment = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/pouch_auto/inaprovaline = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/pouch_auto/adrenaline = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/pouch_auto/dylovene = 1,
 		)
 	can_hold = list(
+		/obj/item/storage/pill_bottle,
+		/obj/item/reagent_containers/pill,
+		/obj/item/reagent_containers/syringe,
+		/obj/item/reagent_containers/glass/bottle,
+		/obj/item/reagent_containers/glass/beaker,
+		/obj/item/device/scanner/health,
 		/obj/item/clothing/gloves/latex,
-		/obj/item/reagent_containers/hypospray/autoinjector,
-		/obj/item/stack/medical/bruise_pack
+		/obj/item/reagent_containers/hypospray,
+		/obj/item/stack/medical
 		)
+
+/obj/item/storage/firstaid/personal/deluxe
+	name = "Deluxe personal first-aid kit"
+	desc = "It's a small emergency medical kit. Deluxe edition!"
+	icon_state = "personal_firstaid_deluxe"
+	open_icon = "personal_firstaid_deluxeopen"
+	storage_slots = 7
+	startswith = list(
+		/obj/item/stack/medical/advanced/bruise_pack = 2,
+		/obj/item/stack/medical/advanced/ointment = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/pouch_auto/inaprovaline = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/pouch_auto/adrenaline = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/pouch_auto/dylovene = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/pain = 1
+		)
+
+/obj/item/storage/firstaid/pocket
+	name = "Pocket first-aid kit"
+	desc = "It's a small medical kit."
+	icon_state = "pocket_firstaid"
+	open_icon = "pocket_firstaidopen"
+	use_sound = 'sounds/effects/storage/briefcase.ogg'
+	storage_slots = 7
+	w_class = ITEM_SIZE_SMALL
+	max_w_class = ITEM_SIZE_SMALL
+	startswith = list(
+		/obj/item/stack/medical/advanced/bruise_pack = 1,
+		/obj/item/stack/medical/advanced/ointment = 1,
+		/obj/item/stack/medical/splint,
+		/obj/item/reagent_containers/hypospray/autoinjector/stimpack/combat = 1,
+		/obj/item/storage/pill_bottle/dermaline = 1,
+		/obj/item/storage/pill_bottle/meraline = 1,
+		/obj/item/storage/pill_bottle/tramadol = 1
+		)
+	can_hold = list(
+		/obj/item/storage/pill_bottle,
+		/obj/item/reagent_containers/pill,
+		/obj/item/reagent_containers/syringe,
+		/obj/item/reagent_containers/glass/bottle,
+		/obj/item/reagent_containers/glass/beaker,
+		/obj/item/device/scanner/health,
+		/obj/item/clothing/gloves/latex,
+		/obj/item/reagent_containers/hypospray,
+		/obj/item/stack/medical
+		)
+/obj/item/storage/firstaid/pocket/empty
+	startswith = list()

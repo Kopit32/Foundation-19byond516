@@ -129,7 +129,7 @@
 	suit = /obj/item/clothing/suit/armor/pcarrier/scp/medium
 	l_pocket = /obj/item/handcuffs
 	r_pocket = /obj/item/melee/telebaton
-	backpack_contents = list(/obj/item/storage/firstaid/adv = 1, /obj/item/storage/firstaid/stab = 1)
+	backpack_contents = list(/obj/item/storage/firstaid/adv = 1, /obj/item/storage/firstaid/combat = 1)
 	belt = /obj/item/storage/belt/holster/security/fullmk9
 	glasses = /obj/item/clothing/glasses/sunglasses/sechud
 	head = /obj/item/clothing/head/helmet/scp/hczsecurityguard
@@ -204,18 +204,34 @@
 /decl/hierarchy/outfit/job/security/lcz_medic
 	name = OUTFIT_JOB_NAME("LCZ Combat Medic")
 	uniform = /obj/item/clothing/under/rank/security/lcz/medic
-	glasses = /obj/item/clothing/glasses/hud/health/visor
+	glasses = /obj/item/clothing/glasses/hud/health/visor/security
 	suit = /obj/item/clothing/suit/armor/vest/scp/medarmor/medic
 	shoes = /obj/item/clothing/shoes/dutyboots
 	id_type = /obj/item/card/id/seclvl2lczdivision
 	l_ear = /obj/item/device/radio/headset/headset_sec_lcz/medic
 	l_pocket = /obj/item/handcuffs
 	r_pocket = /obj/item/melee/telebaton
-	backpack_contents = list(/obj/item/storage/firstaid/adv = 1, /obj/item/storage/firstaid/stab = 1)
+	backpack_contents = list(/obj/item/storage/firstaid/adv = 1, /obj/item/storage/firstaid/combat = 1)
 	belt = /obj/item/storage/belt/holster/security/fullmk9
 	head = /obj/item/clothing/head/helmet/scp/security/medic
 	mask = /obj/item/clothing/mask/balaclava
 	gloves = /obj/item/clothing/gloves/latex/nitrile/armored
+
+/decl/hierarchy/outfit/job/lcz_medicaldoctor
+	name = OUTFIT_JOB_NAME("LCZ Medical Doctor")
+	uniform = /obj/item/clothing/under/rank/security/lcz/medic/lcz_medicaldoctor
+	glasses = /obj/item/clothing/glasses/hud/health/visor/security
+	suit = /obj/item/clothing/suit/storage/toggle/labcoat/armored
+	shoes = /obj/item/clothing/shoes/white
+	id_type = /obj/item/card/id/lcz_medicaldoctor
+	l_ear = /obj/item/device/radio/headset/headset_sec_lcz/medic
+	l_pocket = /obj/item/melee/telebaton
+	r_pocket = /obj/item/reagent_containers/spray/pepper
+	backpack_contents = list(/obj/item/storage/firstaid/combat = 1, /obj/item/device/flash = 1, /obj/random/soap = 1)
+	belt = null
+	head = /obj/item/clothing/head/beret/lcz_medicaldoctor
+	mask = null
+	gloves = null
 
 /decl/hierarchy/outfit/job/security/lcz_riot
 	name = OUTFIT_JOB_NAME("LCZ Riot Control Unit")

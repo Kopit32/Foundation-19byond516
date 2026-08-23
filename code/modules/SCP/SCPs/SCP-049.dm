@@ -63,7 +63,7 @@
 	add_verb(src, /client/proc/aooc)
 
 	SCP.min_time = 10 MINUTES
-	SCP.min_playercount = 10 //mostly a RP scp, cant escape as soon as they spawn in
+	SCP.min_playercount = 12 //mostly a RP scp, cant escape as soon as they spawn in
 
 	add_verb(src, list(
 		/mob/living/carbon/human/scp049/verb/Greetings,
@@ -234,6 +234,10 @@
 					H.Weaken(10)
 					return
 				visible_message(SPAN_WARNING(SPAN_ITALIC("[src] reaches towards [H], but nothing happens...")))
+				if(istype(H.gloves, /obj/item/clothing/ring/scp714))
+					to_chat(src, SPAN_WARNING("\The [H] is protected by a jade ring!"))
+					playsound(src, 'sounds/magic/blind.ogg', 60)
+					return
 				to_chat(src, SPAN_WARNING("\The target's [zone_sel.selecting] is covered. You must make contact with bare skin to kill!"))
 			return
 	return ..()
@@ -349,7 +353,8 @@
 	if(!CanSpecialEmote())
 		return
 
-	playsound(src, 'sounds/scp/voice/SCP049_1.ogg', 30)
+	playsound(src, 'sounds/scp/voice/SCP049_1.ogg', 80)
+	src.say("Greetings.")
 	show_sound_effect(loc, src)
 
 /mob/living/carbon/human/scp049/verb/YetAnotherVictim()
@@ -359,7 +364,8 @@
 	if(!CanSpecialEmote())
 		return
 
-	playsound(src, 'sounds/scp/voice/SCP049_2.ogg', 30)
+	playsound(src, 'sounds/scp/voice/SCP049_2.ogg', 80)
+	src.say("Oh my, yet another victim of the disease.")
 	show_sound_effect(loc, src)
 
 /mob/living/carbon/human/scp049/verb/YouAreNotDoctor()
@@ -369,7 +375,8 @@
 	if(!CanSpecialEmote())
 		return
 
-	playsound(src, 'sounds/scp/voice/SCP049_3.ogg', 30)
+	playsound(src, 'sounds/scp/voice/SCP049_3.ogg', 80)
+	src.say("You are not a doctor.")
 	show_sound_effect(loc, src)
 
 /mob/living/carbon/human/scp049/verb/SenseDiseaseInYou()
@@ -379,7 +386,8 @@
 	if(!CanSpecialEmote())
 		return
 
-	playsound(src, 'sounds/scp/voice/SCP049_4.ogg', 30)
+	playsound(src, 'sounds/scp/voice/SCP049_4.ogg', 80)
+	src.say("I sense the disease in you.")
 	show_sound_effect(loc, src)
 
 /mob/living/carbon/human/scp049/verb/HereToCureYou()
@@ -389,7 +397,8 @@
 	if(!CanSpecialEmote())
 		return
 
-	playsound(src, 'sounds/scp/voice/SCP049_5.ogg', 30)
+	playsound(src, 'sounds/scp/voice/SCP049_5.ogg', 80)
+	src.say("Stop resisting! I'm here to cure you.")
 	show_sound_effect(loc, src)
 
 /mob/living/carbon/human/scp049/proc/CanSpecialEmote()
@@ -414,7 +423,7 @@
 
 	var/turf/T = get_turf(target)
 	new /obj/effect/decal/cleanable/blood(T)
-	playsound(T, 'sounds/effects/splat.ogg', 20, 1)
+	playsound(T, 'sounds/effects/splat.ogg', 50, 1)
 	cured_count++
 
 	target.SCP = new /datum/scp(

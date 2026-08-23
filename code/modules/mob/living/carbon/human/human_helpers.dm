@@ -77,7 +77,7 @@
 			equipment_overlays |= /atom/movable/screen/fullscreen/hud/nvg
 		// === КОНЕЦ БЛОКА ===
 		if(istype(src.wear_mask, /obj/item/clothing/mask))
-			add_clothing_protection(wear_mask)
+			process_mask(wear_mask)
 		if(istype(back,/obj/item/rig))
 			process_rig(back)
 		if(istype(src.r_ear, /obj/item/clothing/ears))
@@ -98,8 +98,10 @@
 			else
 				equipment_see_invis = G.see_invisible
 
-		add_clothing_protection(G)
-		G.process_hud(src)
+/mob/living/carbon/human/proc/process_mask(obj/item/clothing/mask/M)
+	add_clothing_protection(M)
+	if(M.overlay)
+		equipment_overlays |= M.overlay
 
 /mob/living/carbon/human/proc/process_rig(obj/item/rig/O)
 	if(O.visor && O.visor.active && O.visor.vision && O.visor.vision.glasses && (!O.helmet || (head && O.helmet == head)))
@@ -375,17 +377,35 @@
 ///Checks if a human can make direct contact with another human's bare skin, factoring in HCZ hazmat protection.
 ///Uses the attacker's selected zone (zone_sel.selecting) to determine which body part is being targeted.
 ///Returns FALSE if the targeted body part is protected by hazmat gear, meaning the attacker cannot make contact with bare skin there.
+///Returns TRUE if the targeted body part is not protected by hazmat gear (or if zone selection is unavailable).
 /mob/living/carbon/human/proc/can_touch_hazmat_bare_skin(mob/living/carbon/human/target)
 	// Accumulate body coverage flags from the target's hazmat equipment
 	var/hazmat_covered = 0
 
-	if(istype(target.wear_suit, /obj/item/clothing/suit/hcz_hazmat))
+	if(istype(target.wear_suit, /obj/item/clothing/suit/hcz_hazmat)) //HCZ HAZMAT
 		var/obj/item/clothing/suit/hcz_hazmat/suit = target.wear_suit
 		hazmat_covered |= suit.body_parts_covered
 
 	if(istype(target.head, /obj/item/clothing/head/hcz_hazmat))
 		var/obj/item/clothing/head/hcz_hazmat/helmet = target.head
 		hazmat_covered |= helmet.body_parts_covered
+
+	if(istype(target.head, /obj/item/clothing/head/bio_hood)) // BIO SUIT
+		var/obj/item/clothing/head/bio_hood/helmet = target.head
+		hazmat_covered |= helmet.body_parts_covered
+
+	if(istype(target.wear_suit, /obj/item/clothing/suit/bio_suit))
+		var/obj/item/clothing/suit/bio_suit/suit = target.wear_suit
+		hazmat_covered |= suit.body_parts_covered
+
+	if(istype(target.gloves, /obj/item/clothing/ring/scp714)) // jude ring
+		var/obj/item/clothing/ring/scp714/ring = target // protects full body
+		hazmat_covered |= ring.body_parts_covered
+
+	// If zone_sel is not available (e.g. no client), we can't determine the targeted zone.
+	// Default to allowing contact (FALSE = blocked, return TRUE = not blocked).
+	if(!zone_sel)
+		return TRUE
 
 	// Check the specific body part the attacker is targeting
 	switch(zone_sel.selecting)
@@ -427,4 +447,4 @@
 				return FALSE
 
 	// Targeted zone is not covered by hazmat — fall through to standard bare-skin check
-	return
+	return TRUE

@@ -526,6 +526,24 @@
 	area_flags = AREA_FLAG_RAD_SHIELDED
 	sound_env = SMALL_ENCLOSED
 
+/area/site53/llcz/scp1499
+	name = "\improper SCP-1499"
+	icon_state = "research"
+	area_flags = AREA_FLAG_RAD_SHIELDED
+	sound_env = SMALL_ENCLOSED
+
+/area/site53/llcz/scp714
+	name = "\improper SCP-714"
+	icon_state = "research"
+	area_flags = AREA_FLAG_RAD_SHIELDED
+	sound_env = SMALL_ENCLOSED
+
+/area/site53/llcz/scp1025
+	name = "\improper SCP-1025"
+	icon_state = "research"
+	area_flags = AREA_FLAG_RAD_SHIELDED
+	sound_env = SMALL_ENCLOSED
+
 /area/site53/llcz/scp5295
 	name = "\improper SCP-5295"
 	icon_state = "research"
@@ -652,6 +670,16 @@
 	area_flags = AREA_FLAG_RAD_SHIELDED
 	sound_env = SMALL_ENCLOSED
 
+/area/site53/ulcz/engistorage
+	name = "\improper Engineering Storage"
+	icon_state = "conference"
+	area_flags = AREA_FLAG_RAD_SHIELDED
+
+/area/site53/ulcz/engismesstorage
+	name = "\improper SMES Storage"
+	icon_state = "conference"
+	area_flags = AREA_FLAG_RAD_SHIELDED
+
 /area/site53/lowertrams/maintenance
 	name = "\improper Lower Hub Maintenance"
 	icon_state = "conference"
@@ -757,6 +785,18 @@
 	name = "EZ Armory"
 	icon_state = "security"
 
+/area/site53/uez/control_room
+	name = "\improper Control Room"
+	icon_state = "hallC1"
+	area_flags = AREA_FLAG_RAD_SHIELDED
+	sound_env = LARGE_ENCLOSED
+
+/area/site53/uez/conference_room
+	name = "\improper Conference Room"
+	icon_state = "conference"
+	area_flags = AREA_FLAG_RAD_SHIELDED
+	sound_env = LARGE_ENCLOSED
+
 /area/site53/uez/bridge
 	name = "\improper Bridge"
 	icon_state = "hallC1"
@@ -764,6 +804,13 @@
 	sound_env = LARGE_ENCLOSED
 	requires_power = 0
 	dynamic_lighting = 1
+
+
+/area/site53/uez/sitedirector_office
+	name = "\improper Site Director`s Office"
+	icon_state = "hallC1"
+	area_flags = AREA_FLAG_RAD_SHIELDED
+	sound_env = LARGE_ENCLOSED
 
 /area/site53/uez/mcrsubstation
 	name = "Main Control Room Substation"
@@ -1170,6 +1217,11 @@
 	icon_state = "medbay3"
 	ambience = list('sounds/ambience/signal.ogg')
 	area_flags = AREA_FLAG_RAD_SHIELDED
+/area/site53/medical/cmo_office
+	name = "\improper Chief Medical Officer's Office"
+	icon_state = "medbay3"
+	ambience = list('sounds/ambience/signal.ogg')
+	area_flags = AREA_FLAG_RAD_SHIELDED
 
 /area/site53/medical/morgue
 	name = "\improper Morgue"
@@ -1185,6 +1237,11 @@
 	name = "\improper Equipment Storage"
 	icon_state = "medbay4"
 	ambience = list('sounds/ambience/signal.ogg')
+	area_flags = AREA_FLAG_RAD_SHIELDED
+
+/area/site53/engineering/ce_office
+	icon_state = "engineering_locker"
+	sound_env = SMALL_ENCLOSED
 	area_flags = AREA_FLAG_RAD_SHIELDED
 
 /area/site53/engineering/engine_smes
@@ -1466,6 +1523,10 @@
 	name = "\improper Senior Researcher's Office C"
 	icon_state = "research"
 
+/area/site53/science/reaserchdirector
+	name= "\improper Research Director`s Office"
+	icon_state = "research"
+
 //Logistics
 /area/quartermaster/hangar
 	name ="\improper Logistics Hangar"
@@ -1483,11 +1544,6 @@
     has_gravity = 1
     requires_power = 0
 
-/area/scp/dimension004/scp093
-    name = "SCP-004 Dimension - SCP-093 Containment"
-    has_gravity = 1
-    luminosity = 1
-    dynamic_lighting = 0
 
 /area/site53/lhcz/scp004room
 	name = "\improper SCP-004 Containment Chamber"
@@ -1507,3 +1563,18 @@
 	name = "SCP-1678 Dimension - New London"
 	has_gravity = 1
 	requires_power = 0
+
+/area/scp/dimension004/scp1499
+	name = "Unknown"
+	desc = "SCP-1499 Dimension"
+	has_gravity = 1
+	requires_power = 0
+
+/area/scp/dimension004/scp1499/Initialize()
+	. = ..()
+	return INITIALIZE_HINT_LATELOAD
+
+/area/scp/dimension004/scp1499/LateInitialize()
+	for(var/turf/simulated/floor/T in src)
+		if((T.x % 8) == 0 && (T.y % 8) == 0)
+			new /obj/effect/projectile/invislight/scp1499(T)

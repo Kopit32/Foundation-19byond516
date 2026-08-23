@@ -4,6 +4,7 @@
 	icon = 'icons/SCP/scp-173.dmi'
 	icon_state = "173"
 	status_flags = NO_ANTAG
+	animate_movement = 0
 
 	see_invisible = SEE_INVISIBLE_NOLIGHTING
 	see_in_dark = 7
@@ -31,7 +32,7 @@
 	var/defication_max = 60
 
 	/// If TRUE - 173 will automatically trigger attack when bumping a human mob
-	var/bump_attack = FALSE
+	var/bump_attack = TRUE
 
 	/// If TRUE - we will ignore anyone looking at us
 	var/ignore_vision = FALSE
